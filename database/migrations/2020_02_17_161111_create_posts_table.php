@@ -15,15 +15,15 @@ class CreatePostsTable extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('user_id')->unsigned();
-            $table->string('category');
+            $table->bigInteger('user_id')->unsigned();
+            $table->enum('category', ['perdida', 'encuentro', 'estado_critico'])->nullable();
             $table->string('title', 50);
             $table->string('description');
-            $table->string('zone_id')->unsigned();
-            $table->string('animal_type');
-            $table->date('date_event');
-            $table->foreign('user_id')->references('id')->('users')->onDelete('cascade');
-            $table->foreign('zone_id')->references('id')->('zones')->onDelete('cascade');
+            $table->bigInteger('zone_id')->unsigned();
+            $table->enum('animal_type', ['canino', 'felino', 'ave', 'roedor', 'equino', 'otro'])->nullable();
+            /** hasta que aprenda a cargar una fecha, agregar columna usando comando de migracion $table->date('date_event'); */
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('zone_id')->references('id')->on('zones')->onDelete('cascade');
             $table->timestamps();
         });
     }
