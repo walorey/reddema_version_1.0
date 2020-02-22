@@ -18,3 +18,17 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['middleware' => 'auth'], function(){
+
+
+	Route::resource('front', 'FrontController');
+
+	Route::resource('posts', 'PostController');
+
+	Route::get('Publicar', [
+		'uses' => 'PostController@create',
+		'as' => 'new.post'
+	]);
+
+});

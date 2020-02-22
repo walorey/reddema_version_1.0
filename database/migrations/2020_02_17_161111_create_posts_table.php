@@ -16,7 +16,7 @@ class CreatePostsTable extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('user_id')->unsigned();
-            $table->enum('category', ['perdida', 'encuentro', 'estado_critico'])->nullable();
+            $table->enum('category', ['perdida', 'encuentro', 'estado_critico', 'adopcion'])->nullable();
             $table->string('title', 50);
             $table->string('description');
             $table->bigInteger('zone_id')->unsigned();
