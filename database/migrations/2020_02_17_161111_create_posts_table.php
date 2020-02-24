@@ -16,11 +16,11 @@ class CreatePostsTable extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('user_id')->unsigned();
-            $table->enum('category', ['perdida', 'encuentro', 'estado_critico', 'adopcion'])->nullable();
+            $table->enum('category', ['Perdida', 'Encuentro', 'Estado crítico', 'Adopción'])->nullable();
             $table->string('title', 50);
             $table->string('description');
             $table->bigInteger('zone_id')->unsigned();
-            $table->enum('animal_type', ['canino', 'felino', 'ave', 'roedor', 'equino', 'otro'])->nullable();
+            $table->enum('animal_type', ['Canino', 'Felino', 'Ave', 'Roedor', 'Equino', 'Otro'])->nullable();
             /** hasta que aprenda a cargar una fecha, agregar columna usando comando de migracion $table->date('date_event'); */
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('zone_id')->references('id')->on('zones')->onDelete('cascade');

@@ -4,7 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Zone;
-
+use App\Post;
+use App\Image;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
+use App\User;
 class PostController extends Controller
 {
     /**
@@ -14,7 +18,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        $posts = Post::orderBy('id', 'DESC')->paginate(20);
+
+        return view('posts.index')->with('posts', $posts);
     }
 
     /**
@@ -36,7 +42,33 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $post = new Post($request->all());
+        $post->user_id = Auth::User()->id;
+        $post->zone_id = $request->zone;
+        $post->save();
+
+
+        if($request->hasFile('images')){
+
+            foreach ($request->file('images') as $imagen) {
+                               $ruta = Storage::put('public',$imagen);
+                $nuevaImagen = new Image;
+                $nuevaImagen->ruta = $ruta;
+                $nuevaImagen->post_id = $post->id;
+                $nuevaImagen->save();
+            }
+
+            //no puedo guardar multiples imagenes, una si.
+
+        }
+
+
+
+
+
+        echo "Publicacion guardada!";
+
     }
 
     /**
