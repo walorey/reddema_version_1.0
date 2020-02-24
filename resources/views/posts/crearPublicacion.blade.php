@@ -55,7 +55,7 @@
 	  </div>
 	<div class="form-group">
 	    <label for="exampleFormControlTextarea1">Detalles</label>
-	    <textarea name="description"  required class="form-control" id="exampleFormControlTextarea1" rows="3" name="description"></textarea>
+	    <textarea name="description" placeholder="Deja detalles, datos de contacto, telefonos, emails o redes sociales" required class="form-control" id="exampleFormControlTextarea1" rows="3" name="description"></textarea>
 	  </div>
 	  <button type="submit" class="btn btn-primary">Publicar</button>
 	</form>
