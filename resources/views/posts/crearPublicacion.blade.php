@@ -35,7 +35,7 @@
 	    	<option disabled selected>Seleccione una zona</option>
 	    	<optgroup label="CABA">
 		    	@foreach($zones as $zone)
-		    		@if($zone->id>2 && $zone->id<51)
+		    		@if($zone->id>0 && $zone->id<49)
 		    		<option value="{{$zone->id}}">{{$zone->name}}</option>
 		    		@endif
 		    	@endforeach

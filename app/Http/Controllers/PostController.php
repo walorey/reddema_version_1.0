@@ -18,9 +18,10 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::orderBy('id', 'DESC')->paginate(20);
+        $posts = Post::orderBy('id', 'DESC')->paginate(5);
+        $zones = Zone::all();
 
-        return view('posts.index')->with('posts', $posts);
+        return view('posts.index')->with('posts', $posts)->with('zones', $zones);
     }
 
     /**
