@@ -20,6 +20,7 @@
 			  <div class="form-group">
 			    <label for="exampleFormControlSelect1">Categoria</label>
 			    <select class="form-control" id="exampleFormControlSelect1" name="category">
+			      <option disabled selected>Seleccione una categoría</option>
 			      <option value="Adopción">Adopción</option>
 			      <option value="Encuentro">Encuentro</option>
 			      <option value="Estado crítico">Estado crítico</option>
@@ -29,6 +30,7 @@
 			   <div class="form-group">
 			    <label for="exampleFormControlSelect1">Tipo de animal</label>
 			    <select class="form-control" name="animal_type" id="exampleFormControlSelect1">
+			      <option disabled selected>Seleccione el tipo de animal</option>
 			      <option value="Canino">Canino</option>
 			      <option value="Felino">Felino</option>
 			      <option value="Ave">Ave</option>

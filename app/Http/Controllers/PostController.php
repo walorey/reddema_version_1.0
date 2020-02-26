@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Http\Requests\PostRequest;
+use Validator;
 
 class PostController extends Controller
 {
@@ -20,7 +21,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::orderBy('id', 'DESC')->paginate(5);
+        $posts = Post::orderBy('id', 'DESC')->paginate(10);
         $zones = Zone::all();
 
         return view('posts.index')->with('posts', $posts)->with('zones', $zones);
@@ -46,6 +47,19 @@ class PostController extends Controller
     public function store(PostRequest $request)
     {
 
+        // $messages = [
+        //     'images.*.image' =>'Solo puede subir archivos del tipo imagen'
+        // ];
+
+        // $validator = Validator::make($request->all(), [
+        //     'images.*' => 'image',
+        // ], $messages);
+
+        // if ($validator->fails()) {
+        //      return redirect()->back()->withErrors($validator);
+        // }
+
+
         $post = new Post($request->all());
         $post->user_id = Auth::User()->id;
         $post->zone_id = $request->zone;
@@ -55,7 +69,7 @@ class PostController extends Controller
         if($request->hasFile('images')){
 
             foreach ($request->file('images') as $imagen) {
-                               $ruta = Storage::put('public',$imagen);
+                $ruta = Storage::put('public',$imagen);
                 $nuevaImagen = new Image;
                 $nuevaImagen->ruta = $ruta;
                 $nuevaImagen->post_id = $post->id;

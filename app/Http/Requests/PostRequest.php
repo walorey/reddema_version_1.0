@@ -28,7 +28,7 @@ class PostRequest extends FormRequest
             'category' => 'required',
             'animal_type' => 'required',
             'zone' => 'required',
-            'images[]' => 'image',
+            'images.*' => 'image',
             'description' => 'required',
         ];
     }
@@ -41,7 +41,7 @@ class PostRequest extends FormRequest
             'category.required'  => 'Debe ingresar una categoría',
             'animal_type.required' => 'Debe especificar el tipo de animal',
             'zone.required' => 'Debe especificar una zona',
-            'images[].image' =>'Solo puede subir archivos del tipo imagen',
+            'images.*.image'=>'Solo puede subir archivos del tipo imagen',
             'description.required' => 'Ingrese detalles',
 
         ];
