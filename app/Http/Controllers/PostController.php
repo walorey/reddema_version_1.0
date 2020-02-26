@@ -9,6 +9,8 @@ use App\Image;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use App\User;
+use App\Http\Requests\PostRequest;
+
 class PostController extends Controller
 {
     /**
@@ -41,7 +43,7 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
 
         $post = new Post($request->all());

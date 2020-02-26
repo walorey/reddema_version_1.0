@@ -1,5 +1,3 @@
-			<button type="button" class="btn btn-outline-success btn-lg btn-block" data-toggle="modal" data-target="#modalPublicar">Publicar</button>
-			<br>
 			<div class="accordion" id="accordionCategoria">
 			  <div class="card">
 			    <div class="card-header" id="headingCategoria">
