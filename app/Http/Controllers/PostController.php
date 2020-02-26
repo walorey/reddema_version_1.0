@@ -70,7 +70,7 @@ class PostController extends Controller
 
 
 
-        echo "Publicacion guardada!";
+        return redirect()->route('index.post')->with('mensaje', 'Se ha creado tu publicación');
 
     }
 

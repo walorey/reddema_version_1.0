@@ -63,7 +63,7 @@
 			  </div>
 			<div class="form-group">
 			    <label for="exampleFormControlTextarea1">Detalles</label>
-			    <textarea name="description" placeholder="Deja detalles, datos de contacto, telefonos, emails o redes sociales" class="form-control" id="exampleFormControlTextarea1" rows="3" name="description" value="{{old('description')}}"></textarea>
+			    <textarea name="description" placeholder="Deja detalles, datos de contacto, telefonos, emails o redes sociales" class="form-control" id="exampleFormControlTextarea1" rows="3"value="{{old('description')}}"></textarea>
 			  </div>
 			  <button type="submit" class="btn btn-primary">Publicar</button>
 			</form>
