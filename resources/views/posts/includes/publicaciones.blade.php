@@ -45,4 +45,4 @@
 			</div>
 			<br>
 			@endforeach
-			{!! $posts->render()!!}
+			{!! $posts->appends(Request::only(['category', 'animal_type', 'zone']))->render()!!}
