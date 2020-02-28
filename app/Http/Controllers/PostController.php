@@ -132,4 +132,17 @@ class PostController extends Controller
     {
         //
     }
+
+    public function filtrar(Request $request)
+    {
+        $category = $request->category;
+        $animal_type = $request->animal_type;
+        $zone = $request->zone;
+
+        $posts = Post::orderBy('id', 'DESC')->category($category)->animaltype($animal_type)->zone($zone)->paginate(10);
+        $zones = Zone::all();
+
+        return view('posts.index')->with('posts', $posts)->with('zones', $zones);
+
+    }
 }

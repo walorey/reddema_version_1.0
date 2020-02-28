@@ -30,5 +30,28 @@ class Post extends Model
     	return $this->belongsTo('App\Zone');
     }
 
+    public function scopeCategory($query, $category)
+    {
+        if($category)
+        {
+            return $query->where('category', "$category");
+        }
+    }
+
+    public function scopeAnimalType($query, $animal_type)
+    {
+        if($animal_type)
+        {
+            return $query->where('animal_type', "$animal_type");
+        }
+    }
+
+    public function scopeZone($query, $zone)
+    {
+        if($zone)
+        {
+            return $query->where('zone_id', "$zone");
+        }
+    }
 
 }

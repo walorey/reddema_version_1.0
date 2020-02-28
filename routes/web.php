@@ -35,4 +35,11 @@ Route::group(['middleware' => 'auth'], function(){
 		'uses' => 'PostController@index',
 		'as' => 'index.post'
 	]);
+
+	Route::get('/filtros}', [
+	'uses'=>'PostController@filtrar',
+	'as'=>'filtrar.post'
+	 ]);
+
+
 });

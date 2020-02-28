@@ -1,42 +1,55 @@
-			<div class="accordion" id="accordionCategoria">
-			  <div class="card">
-			    <div class="card-header" id="headingCategoria">
-			      <h2 class="mb-0 text-center">
-			        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseCategoria" aria-expanded="true" aria-controls="collapseCategoria">
-			          Categorías
-			        </button>
-			      </h2>
-			    </div>
-			  </div>
-			  <div id="collapseCategoria" class="collapse show" aria-labelledby="headingCategoria" data-parent="#accordionCategoria">
-		      <div class="card-body">
-		      	<a class="dropdown-item text-center" href="#">Adopción</a>
-				{{-- <a class="dropdown-item active" href="#">Active link</a> --}}
-				<a class="dropdown-item text-center" href="#">Encuentro</a>
-				<a class="dropdown-item text-center" href="#">Estado crítico</a>
-				<a class="dropdown-item text-center" href="#">Pérdida</a>
-		      </div>
-		    </div>
-		  </div>
-		  <div class="accordion" id="accordionTA">
-			  <div class="card">
-			    <div class="card-header" id="headingTA">
-			      <h2 class="mb-0 text-center">
-			        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseTA" aria-expanded="true" aria-controls="collapseTA">
-			          Tipo de animal
-			        </button>
-			      </h2>
-			    </div>
-			  </div>
-			  <div id="collapseTA" class="collapse show" aria-labelledby="headingTA" data-parent="#accordionTA">
-		      <div class="card-body">
-			  	<a class="dropdown-item text-center" href="#">Canino</a>
-				{{-- <a class="dropdown-item active" href="#">Active link</a> --}}
-				<a class="dropdown-item text-center" href="#">Felino</a>
-				<a class="dropdown-item text-center" href="#">Ave</a>
-				<a class="dropdown-item text-center" href="#">Roedor</a>
-				<a class="dropdown-item text-center" href="#">Equino</a>
-				<a class="dropdown-item text-center" href="#">Otro</a>
-		      </div>
-		    </div>
-		  </div>
+			<div class="card border-light mb-3" style="max-width: 18rem;">
+			  <div class="card-header" class="text-center">Filtros</div>
+				  <div class="card-body">
+				  	<form action="{{route('filtrar.post')}}" method="get">
+				  		@csrf
+				  		<label for="exampleFormControlSelect1">Categorías</label>
+						<select class="form-control" id="exampleFormControlSelect1" name="category">
+					      <option disabled selected>Seleccione una categoría</option>
+					      <option value="Adopción">Adopción</option>
+					      <option value="Encuentro">Encuentro</option>
+					      <option value="Estado crítico">Estado crítico</option>
+					      <option value="Pérdida">Pérdida</option>
+						</select>
+
+						<br>
+
+						<label for="exampleFormControlSelect1">Tipo de animal</label>
+					    <select class="form-control" name="animal_type" id="exampleFormControlSelect1">
+					      <option disabled selected>Seleccione el tipo de animal</option>
+					      <option value="Canino">Canino</option>
+					      <option value="Felino">Felino</option>
+					      <option value="Ave">Ave</option>
+					      <option value="Roedor">Roedor</option>
+					      <option value="Equino">Equino</option>
+					      <option value="Otro">Otro</option>
+					    </select>
+
+				  		<br>
+
+						<label for="exampleFormControlSelect1">Zona</label>
+					    <select class="form-control" name="zone" id="exampleFormControlSelect1">
+					    	<option disabled selected>Seleccione una zona</option>
+					    	<optgroup label="CABA">
+						    	@foreach($zones as $zone)
+						    		@if($zone->id>0 && $zone->id<49)
+						    		<option value="{{$zone->id}}">{{$zone->name}}</option>
+						    		@endif
+						    	@endforeach
+					    	</optgroup>
+					    	<optgroup label="Buenos Aires Provincia">
+						    	@foreach($zones as $zone)
+						    		@if($zone->id>50)
+										<option  value="{{$zone->id}}">{{$zone->name}}</option>
+						    		@endif
+						    	@endforeach
+					    	</optgroup>
+					    </select>
+
+					    <br>
+
+					    <button type="submit" class="btn btn-info">Ir</button>
+				  	</form>
+
+				  </div>
+			</div>
