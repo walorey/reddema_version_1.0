@@ -3,15 +3,19 @@
 			  <div class="card-header">
 			    <span><i class="fas fa-list-ul"></i> <a href="{{route('filtrar.categoria', $post->category)}}">{{$post->category}}</a></span>
 			    <span>|</span>
-			    <span><i class="fas fa-paw"></i> <a href="{{route('filtrar.tipoAnimal' ,$post->animal_type)}}">{{$post->animal_type}}</a></span>
-			    <span class="float-right">
+			    <span><i class="fas fa-paw"></i> <a href="{{route('filtrar.tipoAnimal' ,$post->animal_type)}}">{{$post->animal_type}}</a>
+			    </span>
+			    <span>|</span>
+			    <span>
 			    	<i class="fas fa-map-marker-alt"></i>
 
 			      	<a href="{{route('filtrar.zona',  [$post->zone->name,$post->zone->id])}}">
 			      		{{$post->zone->name}}
 			      	</a>
 				</span>
-
+				<span>|</span>
+				<span>{{$post->created_at}}</span>
+				<span class="float-right">{{$post->user->name}} {{$post->user->lastname}}</span>
 
 
 
@@ -49,11 +53,10 @@
 				    </div>
 			    </div>
 
-			    {{-- <a href="#" class="btn btn-primary">Ver más</a> --}}
 			  </div>
 			    <div class="card-footer text-muted">
-				    <span class="float-left">{{$post->user->name}} {{$post->user->lastname}}</span>
-				    <span class="float-right">{{$post->created_at}}</span>
+			    	<i class="fas fa-comment"></i>
+			    	<a href="{{route('posts.show', $post->id)}}">Comentar</a>
 				 </div>
 			</div>
 			<br>

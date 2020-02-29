@@ -96,7 +96,9 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+        $post = Post::find($id);
+
+        return view('posts.publicacion')->with('post', $post);
     }
 
     /**
@@ -176,6 +178,11 @@ class PostController extends Controller
         $zones = Zone::all();
 
         return view('posts.index')->with('posts', $posts)->with('zones', $zones)->with('animal_type', $animal_type);
+
+    }
+
+    public function comentar($id)
+    {
 
     }
 

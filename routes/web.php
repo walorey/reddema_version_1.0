@@ -58,4 +58,9 @@ Route::group(['middleware' => 'auth'], function(){
 		'as' => 'filtrar.tipoAnimal'
 	]);
 
+	Route::post('Comentando', [
+		'uses' => 'PostController@comentar',
+		'as' => 'post.comentar'
+	]);
+
 });
