@@ -26,6 +26,8 @@ Route::group(['middleware' => 'auth'], function(){
 
 	Route::resource('posts', 'PostController');
 
+	Route::resource('users', 'UserController');
+
 	Route::get('Publicar', [
 		'uses' => 'PostController@create',
 		'as' => 'new.post'
@@ -36,10 +38,24 @@ Route::group(['middleware' => 'auth'], function(){
 		'as' => 'index.post'
 	]);
 
-	Route::get('/filtros}', [
-	'uses'=>'PostController@filtrar',
-	'as'=>'filtrar.post'
+	Route::get('/filtros', [
+		'uses'=> 'PostController@filtrar',
+		'as'=> 'filtrar.post'
 	 ]);
 
+	Route::get('Zona/{name}/{id}', [
+		'uses' => 'PostController@verZona',
+		'as' => 'filtrar.zona'
+	]);
+
+	Route::get('Categoria/{category}', [
+		'uses' => 'PostController@verCategoria',
+		'as' => 'filtrar.categoria'
+	]);
+
+	Route::get('Tipo-Animal/{animal_type}', [
+		'uses' => 'PostController@verTipoAnimal',
+		'as' => 'filtrar.tipoAnimal'
+	]);
 
 });

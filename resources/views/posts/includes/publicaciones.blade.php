@@ -1,8 +1,21 @@
 			@foreach($posts as $post)
 			<div class="card border-info mb-3">
 			  <div class="card-header">
-			    <span>{{$post->category}}</span>
-			    <span class="float-right">{{$post->zone->name}}</span>
+			    <span><i class="fas fa-list-ul"></i> <a href="{{route('filtrar.categoria', $post->category)}}">{{$post->category}}</a></span>
+			    <span>|</span>
+			    <span><i class="fas fa-paw"></i> <a href="{{route('filtrar.tipoAnimal' ,$post->animal_type)}}">{{$post->animal_type}}</a></span>
+			    <span class="float-right">
+			    	<i class="fas fa-map-marker-alt"></i>
+
+			      	<a href="{{route('filtrar.zona',  [$post->zone->name,$post->zone->id])}}">
+			      		{{$post->zone->name}}
+			      	</a>
+				</span>
+
+
+
+
+
 			  </div>
 			  <div class="card-body">
 			    <h5 class="card-title">{{$post->title}}</h5>

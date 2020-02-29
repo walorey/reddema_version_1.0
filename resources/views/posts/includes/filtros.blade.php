@@ -1,5 +1,5 @@
 			<div class="card border-light mb-3" style="max-width: 18rem;">
-			  <div class="card-header" class="text-center">Filtros</div>
+			  <div class="card-header" class="text-center"><i class="fas fa-filter"></i> Filtros</div>
 				  <div class="card-body">
 				  	<form action="{{route('filtrar.post')}}" method="get">
 				  		@csrf

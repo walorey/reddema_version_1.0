@@ -145,4 +145,38 @@ class PostController extends Controller
         return view('posts.index')->with('posts', $posts)->with('zones', $zones)->with('zone', $zone)->with('category', $category)->with('animal_type', $animal_type);
 
     }
+
+    public function verZona($name, $id)
+    {
+        $zone = $id;
+
+        $posts = Post::orderBy('id', 'DESC')->zone($zone)->paginate(10);
+        $zones = Zone::all();
+
+        return view('posts.index')->with('posts', $posts)->with('zones', $zones)->with('zone', $zone);
+
+    }
+
+    public function verCategoria($name)
+    {
+        $category = $name;
+
+        $posts = Post::orderBy('id', 'DESC')->category($category)->paginate(10);
+        $zones = Zone::all();
+
+        return view('posts.index')->with('posts', $posts)->with('zones', $zones)->with('category', $category);
+
+    }
+
+    public function verTipoAnimal($type)
+    {
+        $animal_type = $type;
+
+        $posts = Post::orderBy('id', 'DESC')->animaltype($animal_type)->paginate(10);
+        $zones = Zone::all();
+
+        return view('posts.index')->with('posts', $posts)->with('zones', $zones)->with('animal_type', $animal_type);
+
+    }
+
 }
