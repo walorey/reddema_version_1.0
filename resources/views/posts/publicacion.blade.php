@@ -66,7 +66,7 @@
 	@else
 			@foreach($post->comments as $comentario)
 			<div class="card">
-			  <div class="card-header">{{$comentario->user->name}} {{$comentario->user->lastname}} {{$comentario->created_at}}</div>
+			  <div class="card-header">{{$comentario->user->name}} {{$comentario->user->lastname}} <span class="float-right">{{$comentario->created_at}}</span></div>
 			  <div class="card-body text-dark">
 			    <p class="card-text">{{$comentario->body}}</p>
 			  </div>

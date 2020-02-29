@@ -16,6 +16,7 @@ class CreateNotificationsTable extends Migration
         Schema::create('notifications', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->enum('state', ['leida', 'no-leida'])->default('no-leida')->nullable();
+            $table->bigInteger('post_id')->unsigned();
             $table->bigInteger('addressee_user_id')->unsigned();
             $table->bigInteger('generator_user_id')->unsigned();
             $table->timestamps();

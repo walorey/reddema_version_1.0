@@ -196,6 +196,7 @@ class PostController extends Controller
         $notificacion = New Notification;
         $notificacion->addressee_user_id = $post->user->id;
         $notificacion->generator_user_id = Auth::User()->id;
+        $notificacion->post_id = $post->id;
         $notificacion->save();
 
         $mensaje = "¡Su comentario ha sido enviado!";
