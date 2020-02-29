@@ -142,7 +142,7 @@ class PostController extends Controller
         $posts = Post::orderBy('id', 'DESC')->category($category)->animaltype($animal_type)->zone($zone)->paginate(10);
         $zones = Zone::all();
 
-        return view('posts.index')->with('posts', $posts)->with('zones', $zones);
+        return view('posts.index')->with('posts', $posts)->with('zones', $zones)->with('zone', $zone)->with('category', $category)->with('animal_type', $animal_type);
 
     }
 }
