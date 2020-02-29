@@ -11,6 +11,9 @@ use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Http\Requests\PostRequest;
 use Validator;
+use App\Commentary;
+use App\Notification;
+
 
 class PostController extends Controller
 {
@@ -181,8 +184,23 @@ class PostController extends Controller
 
     }
 
-    public function comentar($id)
+    public function comentar(Request $request, $id)
     {
+        $comentario = New Commentary($request->all());
+        $comentario->user_id = Auth::User()->id;
+        $comentario->post_id = $id;
+        $comentario->save();
+
+        $post = Post::find($id);
+
+        $notificacion = New Notification;
+        $notificacion->addressee_user_id = $post->user->id;
+        $notificacion->generator_user_id = Auth::User()->id;
+        $notificacion->save();
+
+        $mensaje = "¡Su comentario ha sido enviado!";
+
+        return view('posts.publicacion')->with('post', $post)->with('mensaje', $mensaje);
 
     }
 

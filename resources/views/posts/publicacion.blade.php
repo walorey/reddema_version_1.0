@@ -66,30 +66,38 @@
 	@else
 			@foreach($post->comments as $comentario)
 			<div class="card">
-			  <div class="card-header">{{$comentario->usuario->name}} {{$comentario->usuario->lastname}} {{$comentario->created_at}}</div>
+			  <div class="card-header">{{$comentario->user->name}} {{$comentario->user->lastname}} {{$comentario->created_at}}</div>
 			  <div class="card-body text-dark">
-			    <p class="card-text">{{$comentario->cuerpo}}</p>
+			    <p class="card-text">{{$comentario->body}}</p>
 			  </div>
 			</div>
 			@endforeach
 	@endif
 
-		<div class="card border-info mb-3">
-		  <div class="card-header">Comentar</div>
-		  <div class="card-body text-info">
-		  	<form action="{{route('post.comentar', $post->id)}}" method="post" >
-		  		@csrf
+	@if(isset($mensaje))
+	<br>
+	<div class="alert alert-success alert-dismissible fade show" role="alert">
+	  <strong>{{$mensaje}}</strong>
+	  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+	    <span aria-hidden="true">&times;</span>
+	  </button>
+	</div>
+	@endif
 
+	<br>
 
-		  	  <div class="form-group">
-			    <textarea class="form-control" id="exampleFormControlTextarea1" name="cuerpo" rows="3"></textarea>
-			  </div>
-
-			  <button type="submit" class="btn btn-outline-primary">Enviar</button>
-
-		  	</form>
+	<div class="card border-info mb-3">
+	  <div class="card-header">Comentar</div>
+	  <div class="card-body text-info">
+	  	<form action="{{route('post.comentar', $post->id)}}" method="post" >
+	  		@csrf
+	  	  <div class="form-group">
+		    <textarea class="form-control" id="exampleFormControlTextarea1" name="body" rows="3"></textarea>
 		  </div>
-		</div>
+		  <button type="submit" class="btn btn-outline-primary">Enviar</button>
+	  	</form>
+	  </div>
+	</div>
 
 </div>
 @endsection
