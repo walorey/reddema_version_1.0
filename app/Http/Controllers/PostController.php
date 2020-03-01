@@ -201,7 +201,9 @@ class PostController extends Controller
 
         $mensaje = "¡Su comentario ha sido enviado!";
 
-        return view('posts.publicacion')->with('post', $post)->with('mensaje', $mensaje);
+        // return view('posts.publicacion')->with('post', $post)->with('mensaje', $mensaje);
+
+        return redirect()->route('posts.show' ,$id)->with('mensaje', '¡Su comentario ha sido enviado!');
 
     }
 
