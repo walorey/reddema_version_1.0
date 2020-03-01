@@ -17,10 +17,11 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'PostController@index')->name('home');
+
 
 Route::group(['middleware' => 'auth'], function(){
 
+	Route::get('/home', 'PostController@index')->name('home');
 
 	Route::resource('front', 'FrontController');
 
