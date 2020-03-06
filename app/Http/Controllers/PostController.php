@@ -13,6 +13,7 @@ use App\Http\Requests\PostRequest;
 use Validator;
 use App\Commentary;
 use App\Notification;
+use App\Notifications\NewComment;
 
 
 class PostController extends Controller
@@ -186,6 +187,7 @@ class PostController extends Controller
 
     public function comentar(Request $request, $id)
     {
+
         $comentario = New Commentary($request->all());
         $comentario->user_id = Auth::User()->id;
         $comentario->post_id = $id;
@@ -193,11 +195,18 @@ class PostController extends Controller
 
         $post = Post::find($id);
 
-        $notificacion = New Notification;
-        $notificacion->addressee_user_id = $post->user->id;
-        $notificacion->generator_user_id = Auth::User()->id;
-        $notificacion->post_id = $post->id;
-        $notificacion->save();
+        $user = User::find($post->user->id);
+        if (Auth::User()->id !== $user->id) {
+           $user->notify(new NewComment($comentario));
+        }
+
+
+
+        // $notificacion = New Notification;
+        // $notificacion->addressee_user_id = $post->user->id;
+        // $notificacion->generator_user_id = Auth::User()->id;
+        // $notificacion->post_id = $post->id;
+        // $notificacion->save();
 
         $mensaje = "¡Su comentario ha sido enviado!";
 

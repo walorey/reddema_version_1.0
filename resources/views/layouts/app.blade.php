@@ -57,15 +57,20 @@
                             @endif
                         @else
                             <li class="nav-item dropdown">
-                                <a href="">
-                                    <button type="button" class="btn btn-primary">
-                                    Notificationes
-                                    <span class="badge badge-light">4</span>
+                                <div class="btn-group" role="group">
+                                   <button id="btnGroupDrop1" type="button" class="btn btn-primary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                      Notificationes
+                                    <span class="badge badge-light">{{ Auth::user()->notifications->count() }}</span>
                                     </button>
-                                </a>
+                                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                @foreach(Auth::user()->notifications as $notificacion)
+                                  <a class="dropdown-item" href="#">{{$notificacion->data['username']}} {{$notificacion->data['userlastname']}} {{$notificacion->data['subject']}}</a>
+                                @endforeach
+                                </div>
+                              </div>
                             </li>
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle nombre-usuario" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
