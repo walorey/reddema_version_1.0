@@ -64,7 +64,7 @@
                                     </button>
                                 <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                                 @foreach(Auth::user()->notifications as $notificacion)
-                                  <a class="dropdown-item" href="#">{{$notificacion->data['username']}} {{$notificacion->data['userlastname']}} {{$notificacion->data['subject']}}</a>
+                                  <a class="dropdown-item" href="{{$notificacion->data['link']}}">{{$notificacion->data['username']}} {{$notificacion->data['userlastname']}} {{$notificacion->data['subject']}}</a>
                                 @endforeach
                                 </div>
                               </div>

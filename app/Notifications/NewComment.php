@@ -58,6 +58,7 @@ class NewComment extends Notification
     {
         return [
             'subject' => 'ha comentado tu publicación',
+            'link' => route('posts.show' ,$this->commentary->post->id),
             'username' => $this->commentary->user->name,
             'userlastname' => $this->commentary->user->lastname,
             'commentary_id' => $this->commentary->id,
