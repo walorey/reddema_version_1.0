@@ -53,4 +53,12 @@ Route::group(['middleware' => 'auth'], function(){
 		'as' => 'post.comentar'
 	]);
 
+	//Marcar notificacion como leida
+
+	Route::get('notificaciones', [
+		'uses' => 'NotificacionesController@index',
+		'as' => 'leer.notificacion'
+	]);
+
+	Route::patch('notificaciones/{id}', 'NotificacionesController@read')->name('notifications.read');
 });

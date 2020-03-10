@@ -11,7 +11,6 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="{{asset('js/dropzone.js')}}"></script>
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -56,19 +55,7 @@
                                 </li>
                             @endif
                         @else
-                            <li class="nav-item dropdown">
-                                <div class="btn-group" role="group">
-                                   <button id="btnGroupDrop1" type="button" class="btn btn-primary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                      Notificationes
-                                    <span class="badge badge-light">{{ Auth::user()->notifications->count() }}</span>
-                                    </button>
-                                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                @foreach(Auth::user()->notifications as $notificacion)
-                                  <a class="dropdown-item" href="{{$notificacion->data['link']}}">{{$notificacion->data['username']}} {{$notificacion->data['userlastname']}} {{$notificacion->data['subject']}}</a>
-                                @endforeach
-                                </div>
-                              </div>
-                            </li>
+                            <notifications></notifications>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle nombre-usuario" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
@@ -96,5 +83,6 @@
             @yield('content')
         </main>
     </div>
+
 </body>
 </html>

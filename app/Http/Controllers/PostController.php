@@ -12,7 +12,7 @@ use App\User;
 use App\Http\Requests\PostRequest;
 use Validator;
 use App\Commentary;
-use App\Notification;
+// use App\Notification;
 use App\Notifications\NewComment;
 
 

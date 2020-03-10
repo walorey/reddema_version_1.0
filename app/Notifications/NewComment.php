@@ -63,6 +63,7 @@ class NewComment extends Notification
             'userlastname' => $this->commentary->user->lastname,
             'commentary_id' => $this->commentary->id,
             'amount' => $this->commentary->amount,
+            'post_id' => $this->commentary->post->id,
         ];
     }
 }

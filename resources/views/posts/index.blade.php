@@ -11,13 +11,14 @@
 		</div>
 		<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
 
+
+
 			@if($posts->count() == 0)
 
 			<h2 class="text-center">No hay publicaciones.</h2>
 			<h3 class="text-center">Prueba cambiando los filtros.</h3>
 
 			@endif
-
 
 			@include('posts.includes.publicaciones')
 		</div>
