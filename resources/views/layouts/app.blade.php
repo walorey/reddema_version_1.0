@@ -55,7 +55,26 @@
                                 </li>
                             @endif
                         @else
-                            <notifications></notifications>
+                            {{-- <notifications></notifications> --}}
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link nombre-usuario" href="{{ route('notifications.index')}}" v-pre>Notificaciones
+
+                                    @if ($count = Auth::user()->unreadNotifications->count())
+
+                                        <span class="badge badge-light">{{$count}}</span>
+
+                                    @endif
+
+                                </a>
+{{--
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="#">
+                                        Notificacion 1
+                                    </a>
+                                </div> --}}
+                            </li>
+
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle nombre-usuario" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>

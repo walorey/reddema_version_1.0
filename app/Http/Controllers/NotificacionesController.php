@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Notifications\DatabaseNotification;
 use App\User;
 use App\Post;
 
@@ -15,11 +16,18 @@ class NotificacionesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
-        if (request()->ajax()) {
-            return auth()->user()->unreadNotifications;
-        }
+        return view('notifications.index', [
+            'unreadNotifications' => auth()->user()->unreadNotifications,
+            'readNotifications' => auth()->user()->readNotifications
+        ]);
     }
 
     /**
@@ -83,19 +91,26 @@ class NotificacionesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
-    }
 
     public function read($id)
     {
         DatabaseNotification::find($id)->markAsRead();
 
-        if (request()->ajax()) {
-            return auth()->user()->unreadNotifications;
-        }
+        // if (request()->ajax()) {
+        //     return auth()->user()->unreadNotifications;
+        // }
 
         return back()->with('flash', 'Notificacion marcada como leida');
+    }
+
+    public function destroy($id)
+    {
+        DatabaseNotification::find($id)->delete();
+
+        // if (request()->ajax()) {
+        //     return auth()->user()->unreadNotifications;
+        // }
+
+        return back()->with('flash', 'Notificacion eliminada');
     }
 }

@@ -57,8 +57,9 @@ Route::group(['middleware' => 'auth'], function(){
 
 	Route::get('notificaciones', [
 		'uses' => 'NotificacionesController@index',
-		'as' => 'leer.notificacion'
+		'as' => 'notifications.index'
 	]);
 
 	Route::patch('notificaciones/{id}', 'NotificacionesController@read')->name('notifications.read');
+	Route::delete('notificaciones/{id}', 'NotificacionesController@destroy')->name('notifications.destroy');
 });
