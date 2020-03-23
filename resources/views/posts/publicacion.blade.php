@@ -18,7 +18,7 @@
 
 								<!-- Button trigger modal -->
 								<a href="#"  data-toggle="modal" data-target="#image-{{$image->id}}">
-								  <img src="{{Storage::url($image->ruta)}}" class="img-thumbnail" style="width: 190px; height: 190px;">
+								  <img src="{{asset($image->ruta)}}" class="img-thumbnail" style="width: 190px; height: 190px;">
 								</a>
 
 								<!-- Modal -->
@@ -31,7 +31,7 @@
 								        </button>
 								      </div>
 								      <div class="modal-body">
-								        <img src="{{Storage::url($image->ruta)}}" class="img-thumbnail">
+								        <img src="{{asset($image->ruta)}}" class="img-thumbnail">
 								      </div>
 								    </div>
 								  </div>
