@@ -22,8 +22,7 @@
                       <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                      <div class="dropdown-header text-center">Propiedades</div>
-                      <a class="dropdown-item text-center" href="#">Reportar</a>
+                      <a class="dropdown-item text-center" href="#">Editar</a>
                       <div class="dropdown-divider"></div>
                       <a class="dropdown-item text-center" href="#">Eliminar</a>
                     </div>

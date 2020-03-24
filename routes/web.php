@@ -50,7 +50,7 @@ Route::group(['middleware' => 'auth'], function(){
 
 	//Marcar notificacion como leida
 
-	Route::get('notificaciones', [
+	Route::get('Notificaciones', [
 		'uses' => 'NotificacionesController@index',
 		'as' => 'notifications.index'
 	]);
@@ -59,11 +59,15 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::delete('notificaciones/{id}', 'NotificacionesController@destroy')->name('notifications.destroy');
 });
 
-Route::group(['prefix'=>'/admin', 'middleware'=>['admin']], function(){
+Route::group(['prefix'=>'/Admin', 'middleware'=>['admin']], function(){
 
 	Route::get('/Panel', [
 		'uses' => 'AdminController@index',
 		'as' => 'home.admin'
 	]);
 
+	Route::get('/Usuarios', [
+		'uses' => 'AdminController@userIndex',
+		'as' => 'users.index'
+	]);
 });

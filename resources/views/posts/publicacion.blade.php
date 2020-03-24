@@ -61,27 +61,22 @@
 
 		{{-- 	comentarios --}}
 
-			<h3>Comentarios</h3>
+			<h4>Comentarios</h4>
 
 			@if($post->comments->count() == 0)
 
 				<p>¡Sé el primero en comentar!</p>
 			@else
 					@foreach($post->comments as $comentario)
-					<div class="card mb-3">
-					  <div class="row no-gutters">
-					    <div class="col-md-3">
-					      <img src="{{asset('img/avatar-comentario.jpg')}}" alt="..." style="width: 150px; height: 150px;">
-					    </div>
-					    <div class="col-md-9">
-					      <div class="card-body">
-					        <h5 class="card-title">{{$comentario->user->name}} {{$comentario->user->lastname}}</h5>
-					        <p class="card-text">{{$comentario->body}}</p>
-					        <p class="card-text"><small class="text-muted">{{$comentario->created_at}}</small></p>
-					      </div>
-					    </div>
+					<div class="media" style="background-color: #FFFFFF">
+					  <img src="{{asset('img/avatar-comentario.jpg')}}" class="align-self-start mr-3" alt="..." style="width: 64px; height: 64px;">
+					  <div class="media-body">
+					    <h5 class="mt-2">{{$comentario->user->name}} {{$comentario->user->lastname}}</h5>
+					    <p>{{$comentario->body}}</p>
+						<p class="card-text"><small class="text-muted">{{$comentario->created_at}}</small></p>
 					  </div>
 					</div>
+					<br>
 					@endforeach
 			@endif
 			@if(session('mensaje'))

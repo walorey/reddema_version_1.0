@@ -90,4 +90,11 @@ class AdminController extends Controller
     {
         //
     }
+
+    public function userIndex()
+    {
+        $usuarios = User::orderBy('id', 'DESC')->paginate(20);
+
+        return view('admin.usuarios')->with('usuarios', $usuarios);
+    }
 }
