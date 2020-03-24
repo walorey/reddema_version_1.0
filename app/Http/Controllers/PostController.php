@@ -73,7 +73,7 @@ class PostController extends Controller
         if($request->hasFile('images')){
 
             foreach ($request->file('images') as $imagen) {
-                $ruta = Storage::disk('public')->put('img', $imagen);
+                $ruta = Storage::disk('public')->put('publicaciones', $imagen);
                 $nuevaImagen = new Image;
                 $nuevaImagen->ruta = $ruta;
                 $nuevaImagen->post_id = $post->id;
@@ -88,7 +88,7 @@ class PostController extends Controller
 
 
 
-        return redirect()->route('index.post')->with('mensaje', 'Se ha creado tu publicación');
+        return redirect()->route('home')->with('mensaje', 'Se ha creado tu publicación');
 
     }
 

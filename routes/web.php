@@ -23,11 +23,6 @@ Route::group(['middleware' => 'auth'], function(){
 		'as' => 'new.post'
 	]);
 
-	Route::get('Publicaciones', [
-		'uses' => 'PostController@index',
-		'as' => 'index.post'
-	]);
-
 	Route::get('/filtros', [
 		'uses'=> 'PostController@filtrar',
 		'as'=> 'filtrar.post'
