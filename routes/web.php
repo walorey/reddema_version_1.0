@@ -58,3 +58,12 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::patch('notificaciones/{id}', 'NotificacionesController@read')->name('notifications.read');
 	Route::delete('notificaciones/{id}', 'NotificacionesController@destroy')->name('notifications.destroy');
 });
+
+Route::group(['prefix'=>'/admin', 'middleware'=>['admin']], function(){
+
+	Route::get('/Panel', [
+		'uses' => 'AdminController@index',
+		'as' => 'home.admin'
+	]);
+
+});

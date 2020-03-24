@@ -73,7 +73,7 @@ class PostController extends Controller
         if($request->hasFile('images')){
 
             foreach ($request->file('images') as $imagen) {
-                $ruta = Storage::disk('public')->put('publicaciones', $imagen);
+                $ruta = Storage::disk('public')->put('img/publicaciones', $imagen);
                 $nuevaImagen = new Image;
                 $nuevaImagen->ruta = $ruta;
                 $nuevaImagen->post_id = $post->id;
