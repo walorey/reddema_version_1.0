@@ -15,12 +15,36 @@
 				</span>
 				<span>|</span>
 				<span>{{$post->created_at}}</span>
+			  	@if($post->user->id == Auth::user()->id)
+				<span class="float-right">
+			  	  <div class="dropdown no-arrow">
+                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                      <div class="dropdown-header text-center">Propiedades</div>
+                      <a class="dropdown-item text-center" href="#">Reportar</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item text-center" href="#">Eliminar</a>
+                    </div>
+                  </div>
+			  	</span>
+				@else
+				<span class="float-right">
+			  	  <div class="dropdown no-arrow">
+                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                      <a class="dropdown-item text-center" href="#">Reportar</a>
+                    </div>
+                  </div>
+                 </span>
+				@endif
 				<span class="float-right">{{$post->user->name}} {{$post->user->lastname}}</span>
 
-
-
-
 			  </div>
+
 			  <div class="card-body">
 			    <h5 class="card-title">{{$post->title}}</h5>
 			    <p class="card-text">{{$post->description}}</p>
