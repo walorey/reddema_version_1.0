@@ -21,6 +21,8 @@
 			@endif
 
 			@include('posts.includes.publicaciones')
+
+
 		</div>
 		<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
 			@include('posts.includes.zonas')

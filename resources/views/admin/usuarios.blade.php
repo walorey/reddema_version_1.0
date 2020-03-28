@@ -39,20 +39,24 @@
                       <td><span class="badge badge-primary">{{$usuario->type}}</span></td>
                       @endif
                       <td>
-                      	<a href="#" class="btn btn-danger btn-circle">
-		                    <i class="fas fa-trash"></i>
-		                  </a>
+                      	<a href="#" class="btn btn-warning btn-circle" title="Ver usuario">
+		                   <i class="fas fa-eye"></i>
+		                </a>
+                      	<a href="#" class="btn btn-danger btn-circle" title="Eliminar usuario">
+		                   <i class="fas fa-trash"></i>
+		                </a>
                       </td>
                     </tr>
                   	@endforeach
-                  	{!! $usuarios->render()!!}
                   </tbody>
                 </table>
+                {!! $usuarios->render()!!}
               </div>
             </div>
           </div>
 
         </div>
         <!-- /.container-fluid -->
+
 </div>
 @endsection

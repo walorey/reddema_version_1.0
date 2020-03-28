@@ -97,4 +97,9 @@ class AdminController extends Controller
 
         return view('admin.usuarios')->with('usuarios', $usuarios);
     }
+
+    public function eliminarUsuario()
+    {
+
+    }
 }

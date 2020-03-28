@@ -81,11 +81,15 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a href="#" class="dropdown-item text-center">Perfil</a>
+                                    <a href="#" class="dropdown-item text-center">Configuración</a>
+
                                     @if(Auth::user()->type == "admin")
-                                    <a href="{{route('home.admin')}}" class="dropdown-item">Administrar</a>
+                                    <a href="{{route('home.admin')}}" class="dropdown-item text-center">Administrar</a>
                                     @endif
 
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
+
+                                    <a class="dropdown-item text-center" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
