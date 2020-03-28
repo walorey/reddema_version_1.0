@@ -22,8 +22,8 @@
                       <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                      <a class="dropdown-item text-center" href="#">Editar</a>
-                      <a class="dropdown-item text-center" href="#">Imprimir</a>
+                      <a class="dropdown-item text-center" href="{{route('posts.edit', $post->id)}}">Editar</a>
+                      <a class="dropdown-item text-center" href="{{route('exportar.post', $post->id)}}">Imprimir</a>
                       <div class="dropdown-divider"></div>
                       <a class="dropdown-item text-center" href="#">Eliminar</a>
                     </div>

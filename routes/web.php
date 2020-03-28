@@ -18,6 +18,7 @@ Route::group(['middleware' => 'auth'], function(){
 
 	Route::resource('users', 'UserController');
 
+	//Publicaciones/post
 	Route::get('Publicar', [
 		'uses' => 'PostController@create',
 		'as' => 'new.post'
@@ -47,6 +48,14 @@ Route::group(['middleware' => 'auth'], function(){
 		'uses' => 'PostController@comentar',
 		'as' => 'post.comentar'
 	]);
+
+
+	Route::get('Exportar/{id}', [
+		'uses' => 'PostController@exportar',
+		'as' => 'exportar.post'
+	]);
+
+	// Fin Publicaciones/post
 
 	//Marcar notificacion como leida
 

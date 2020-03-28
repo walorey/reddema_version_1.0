@@ -14,6 +14,7 @@ use Validator;
 use App\Commentary;
 // use App\Notification;
 use App\Notifications\NewComment;
+use Barryvdh\DomPDF\Facade as PDF;
 
 
 class PostController extends Controller
@@ -214,6 +215,13 @@ class PostController extends Controller
 
         return redirect()->route('posts.show' ,$id)->with('mensaje', '¡Su comentario ha sido enviado!');
 
+    }
+
+    public function exportar($id)
+    {
+        $post = Post::find($id);
+        $pdf = PDF::loadView('posts.exportar-como-pdf', compact('post'));
+        return $pdf->download($post->title.'.pdf');
     }
 
 }
