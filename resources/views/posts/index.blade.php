@@ -31,5 +31,7 @@
 </div>
 
 @include('posts.includes.crearPublicacion')
+{{-- @include('posts.includes.eliminarPublicacion') --}}
+
 
 @endsection

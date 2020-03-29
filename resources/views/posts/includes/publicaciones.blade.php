@@ -25,7 +25,7 @@
                       <a class="dropdown-item text-center" href="{{route('posts.edit', $post->id)}}">Editar</a>
                       <a class="dropdown-item text-center" href="{{route('exportar.post', $post->id)}}" target="_blank">Imprimir</a>
                       <div class="dropdown-divider"></div>
-                      <a class="dropdown-item text-center" href="#">Eliminar</a>
+                      <a class="dropdown-item text-center" type="button" data-toggle="modal" data-target=".bd-example-modal-sm">Eliminar</a>
                     </div>
                   </div>
 			  	</span>
@@ -83,7 +83,9 @@
 			    	<a href="{{route('posts.show', $post->id)}}">Comentar</a>
 				 </div>
 			</div>
-			<br>
 
+			<br>
+			@include('posts.includes.eliminarPublicacion')
 			@endforeach
+
 			{!! $posts->appends(Request::only(['category', 'animal_type', 'zone']))->render()!!}
