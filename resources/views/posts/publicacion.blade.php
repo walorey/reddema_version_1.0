@@ -1,10 +1,19 @@
 @extends('layouts.app')
-
 @section('content')
 <div class="container">
 	<div class="row">
 		<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12"></div>
 		<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+			@if (session('actualizacion'))
+		    <div class="alert alert-success fade show">
+		    	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				    <span aria-hidden="true">&times;</span>
+				</button>
+		        <ul>
+					{{session('actualizacion')}}
+		        </ul>
+		    </div>
+			@endif
 			<div class="card">
 			  <div class="card-header">
 			  <span style="font-size: 19px;">{{$post->title}}</span>

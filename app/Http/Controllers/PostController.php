@@ -114,7 +114,16 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = Post::find($id);
+        $zones = Zone::all();
+
+        if ($post->user->id == Auth::User()->id) {
+
+            return view('posts.editar-post')->with('post', $post)->with('zones', $zones);
+        }
+        else{
+            return redirect()->route('home');
+        }
     }
 
     /**
@@ -124,9 +133,17 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
+    public function update(PostRequest $request, $id)
+    {   $post = Post::find($id);
+        $post->title = $request->title;
+        $post->category = $request->category;
+        $post->animal_type = $request->animal_type;
+        $post->zone_id = $request->zone;
+        $post->description = $request->description;
+        $post->save();
+
+
+        return redirect()->route('posts.show', $post->id)->with('actualizacion', 'Se ha actualizado su publicación');
     }
 
     /**
