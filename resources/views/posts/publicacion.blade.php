@@ -4,16 +4,7 @@
 	<div class="row">
 		<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12"></div>
 		<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-			@if (session('actualizacion'))
-		    <div class="alert alert-success fade show">
-		    	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-				    <span aria-hidden="true">&times;</span>
-				</button>
-		        <ul>
-					{{session('actualizacion')}}
-		        </ul>
-		    </div>
-			@endif
+			@include('posts.includes.alertas')
 			<div class="card">
 			  <div class="card-header">
 			  <span style="font-size: 19px;">{{$post->title}}</span>
@@ -27,7 +18,7 @@
                       <a class="dropdown-item text-center" href="{{route('posts.edit', $post->id)}}">Editar</a>
                       <a class="dropdown-item text-center" href="{{route('exportar.post', $post->id)}}" target="_blank">Imprimir</a>
                       <div class="dropdown-divider"></div>
-                      <a class="dropdown-item text-center" href="#">Eliminar</a>
+                      <a class="dropdown-item text-center" type="button" data-toggle="modal" data-target=".bd-example-modal-sm">Eliminar</a>
                     </div>
                   </div>
 			  	</span>
@@ -114,10 +105,10 @@
 					<br>
 					@endforeach
 			@endif
-			@if(session('mensaje'))
+			@if(session('comentarioEnviado'))
 			<br>
 			<div class="alert alert-success alert-dismissible fade show" role="alert">
-			  <strong>{{session('mensaje')}}</strong>
+			  <strong>{{session('comentarioEnviado')}}</strong>
 			  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
 			    <span aria-hidden="true">&times;</span>
 			  </button>
@@ -143,4 +134,5 @@
 		<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12"></div>
 	</div>
 </div>
+@include('posts.includes.eliminarPublicacion')
 @endsection

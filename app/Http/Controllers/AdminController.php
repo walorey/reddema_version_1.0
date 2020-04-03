@@ -7,6 +7,10 @@ use App\User;
 use App\Post;
 use App\Image;
 use App\Commentary;
+use Validator;
+use App\Http\Requests\DeleteUserRequest;
+use Illuminate\Support\Facades\Auth;
+use App\Notifications\UserDeleted;
 
 class AdminController extends Controller
 {
@@ -98,8 +102,29 @@ class AdminController extends Controller
         return view('admin.usuarios')->with('usuarios', $usuarios);
     }
 
-    public function eliminarUsuario()
+    public function eliminarUsuario(DeleteUserRequest $request, $id)
     {
+
+        if (!Auth::attempt(['email' => Auth::user()->email, 'password' => $request['password']]))
+            return redirect()->back()->withErrors(['password' => ['La contraseña actual no coincide']]);
+
+        $user = User::find($id);
+
+        // dd($user->id,$admin->id);
+
+        if ($user->id==Auth::user()->id){
+            return redirect()->back()->with('alerta', 'No puedes eliminarte en el panel, si quieres desactivar tu cuenta ve a tu configuración');
+            // $user->id == Auth::user()->id;
+        }
+        else{
+            //notificar
+            $user->notify(new UserDeleted($request->motivo));
+            //eliminar
+            $user->delete();
+            //retornar
+            return redirect()->route('users.index')->with('mensaje', 'Se ha eliminado al usuario: '.$user->name.' '.$user->lastname);
+        }
+
 
     }
 }

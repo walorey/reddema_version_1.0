@@ -79,4 +79,13 @@ Route::group(['prefix'=>'/Admin', 'middleware'=>['admin']], function(){
 		'uses' => 'AdminController@userIndex',
 		'as' => 'users.index'
 	]);
+
+	Route::post('Eliminar/{id}', [
+		'uses' => 'AdminController@eliminarUsuario',
+		'as' => 'eliminar.usuario'
+	]);
+
+
+
+
 });
