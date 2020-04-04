@@ -18,6 +18,9 @@ Route::group(['middleware' => 'auth'], function(){
 
 	Route::resource('users', 'UserController');
 
+	Route::resource('notifications', 'NotificacionesController');
+
+
 	//Publicaciones/post
 	Route::get('Publicar', [
 		'uses' => 'PostController@create',
@@ -66,6 +69,14 @@ Route::group(['middleware' => 'auth'], function(){
 
 	Route::patch('notificaciones/{id}', 'NotificacionesController@read')->name('notifications.read');
 	Route::delete('notificaciones/{id}', 'NotificacionesController@destroy')->name('notifications.destroy');
+
+
+	//Ruta para mostrar el mensaje de una notificacion de una eliminación
+
+	Route::get('Notificaciones/Contenido-eliminado/{id}', [
+		'uses' => 'NotificacionesController@show',
+		'as' => 'notifications.show'
+	]);
 });
 
 Route::group(['prefix'=>'/Admin', 'middleware'=>['admin']], function(){
@@ -80,9 +91,19 @@ Route::group(['prefix'=>'/Admin', 'middleware'=>['admin']], function(){
 		'as' => 'users.index'
 	]);
 
-	Route::post('Eliminar/{id}', [
+	Route::post('Eliminar/Usuario/{id}', [
 		'uses' => 'AdminController@eliminarUsuario',
 		'as' => 'eliminar.usuario'
+	]);
+
+	Route::get('/Publicaciones', [
+		'uses' => 'AdminController@publicacionesIndex',
+		'as' => 'admin.posts.index'
+	]);
+
+	Route::post('Eliminar/Publicacion/{id}', [
+		'uses' => 'AdminController@eliminarPublicacion',
+		'as' => 'eliminar.post'
 	]);
 
 

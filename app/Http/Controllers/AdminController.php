@@ -8,9 +8,10 @@ use App\Post;
 use App\Image;
 use App\Commentary;
 use Validator;
-use App\Http\Requests\DeleteUserRequest;
+use App\Http\Requests\DeleteAsAdminRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Notifications\UserDeleted;
+use App\Notifications\PostDeleted;
 
 class AdminController extends Controller
 {
@@ -102,7 +103,7 @@ class AdminController extends Controller
         return view('admin.usuarios')->with('usuarios', $usuarios);
     }
 
-    public function eliminarUsuario(DeleteUserRequest $request, $id)
+    public function eliminarUsuario(DeleteAsAdminRequest $request, $id)
     {
 
         if (!Auth::attempt(['email' => Auth::user()->email, 'password' => $request['password']]))
@@ -126,5 +127,36 @@ class AdminController extends Controller
         }
 
 
+    }
+
+    public function publicacionesIndex()
+    {
+        $posts = Post::orderBy('id', 'DESC')->paginate(10);
+
+        return view('admin.publicaciones')->with('posts', $posts);
+    }
+
+    public function eliminarPublicacion(DeleteAsAdminRequest $request, $id)
+    {
+        //pruebo que el autenticado sea un admin:
+
+        if (!Auth::attempt(['email' => Auth::user()->email, 'password' => $request['password']]))
+            return redirect()->back()->withErrors(['password' => ['La contraseña actual no coincide']]);
+
+        $post = Post::find($id);
+
+        $user = User::find($post->user->id);
+
+        //notifico al usuario
+
+        $user->notify(new PostDeleted($post->title,$request->motivo, $user));
+
+        //borro la publicación
+
+        $post->delete();
+
+        //redirijo a la seccion publicaciones para informar que se borro correctamente
+
+        return redirect()->route('admin.posts.index')->with('mensaje', 'Se ha eliminado la publicación: '.$post->title);
     }
 }

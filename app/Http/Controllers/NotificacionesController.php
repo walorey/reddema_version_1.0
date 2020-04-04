@@ -59,7 +59,15 @@ class NotificacionesController extends Controller
      */
     public function show($id)
     {
-        //
+        $notificacion = DatabaseNotification::find($id);
+
+        if ($notificacion->data['user']['id'] == Auth::user()->id) {
+            return view('notifications.objectDeleted')->with('notificacion', $notificacion);
+        }
+        else{
+            return redirect()->route('home');
+        }
+
     }
 
     /**
