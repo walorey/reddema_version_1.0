@@ -40,3 +40,13 @@
         </ul>
     </div>
     @endif
+    @if (session('reporteEnviado'))
+    <div class="alert alert-warning fade show">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <ul>
+            {{session('reporteEnviado')}}
+        </ul>
+    </div>
+    @endif

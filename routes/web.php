@@ -77,6 +77,15 @@ Route::group(['middleware' => 'auth'], function(){
 		'uses' => 'NotificacionesController@show',
 		'as' => 'notifications.show'
 	]);
+
+	// Reportes
+
+	Route::resource('reports', 'ReportController');
+
+	Route::post('Reportar/{id}', [
+		'uses' => 'ReportController@report',
+		'as' => 'reports.make'
+	]);
 });
 
 Route::group(['prefix'=>'/Admin', 'middleware'=>['admin']], function(){

@@ -53,5 +53,13 @@ class User extends Authenticatable
     //     return $this->hasMany('App\Notification', 'addressee_user_id');
     // }
 
+    public function reportsMade()
+    {
+        return $this->hasMany('App\Report', 'accuser_id');
+    }
 
+    public function reportsReceived()
+    {
+        return $this->hasMany('App\Report', 'accused_id');
+    }
 }

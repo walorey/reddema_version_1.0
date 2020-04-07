@@ -36,7 +36,7 @@
                       <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                      <a class="dropdown-item text-center" href="#">Reportar</a>
+                      <a class="dropdown-item text-center" type="button" data-toggle="modal" data-target="#modalReport{{$post->id}}" href="#">Reportar</a>
                     </div>
                   </div>
                  </span>
@@ -86,6 +86,7 @@
 
 			<br>
 			@include('posts.includes.eliminarPublicacion')
+			@include('posts.includes.reportarPublicacion')
 			@endforeach
 
 			{!! $posts->appends(Request::only(['category', 'animal_type', 'zone']))->render()!!}
