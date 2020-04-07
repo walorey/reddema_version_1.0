@@ -18,7 +18,12 @@ class ReportController extends Controller
      */
     public function index()
     {
-        //
+        // $reportes =Report::all();
+
+        $pendientes = Report::where('status', 0)->orderBy('id', 'DESC')->paginate(20);
+        $resueltos = Report::where('status', 1)->orderBy('id', 'DESC')->paginate(20);
+
+        return view('admin.reportes')->with('pendientes', $pendientes)->with('resueltos', $resueltos);
     }
 
     /**

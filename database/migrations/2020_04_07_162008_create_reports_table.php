@@ -20,6 +20,7 @@ class CreateReportsTable extends Migration
             $table->string('ruta');
             $table->string('title');
             $table->string('description');
+            $table->string('resultado')->nullable();
             $table->boolean('status')->default(false);
 
             $table->foreign('accuser_id')->references('id')->on('users')->onDelete('cascade');

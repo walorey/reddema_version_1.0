@@ -13,12 +13,20 @@
 
 .link-limpio{
 	text-decoration: none!important;
-  color: white;
 }
 
 .link-limpio:hover{
   text-decoration: none!important;
-  color: white;
+}
+
+.link-limpio-blanco{
+  text-decoration: none!important;
+  color: white !important;
+}
+
+.link-limpio-blanco:hover{
+  text-decoration: none!important;
+  color: white !important;
 }
 
 .btn-circle{

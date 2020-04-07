@@ -7,6 +7,7 @@ use App\User;
 use App\Post;
 use App\Image;
 use App\Commentary;
+use App\Report;
 use Validator;
 use App\Http\Requests\DeleteAsAdminRequest;
 use Illuminate\Support\Facades\Auth;
@@ -26,8 +27,9 @@ class AdminController extends Controller
         $publicaciones = Post::all()->count();
         $imagenes = Image::all()->count();
         $comentarios = Commentary::all()->count();
+        $reportesPendientes = Report::where('status', 0)->count();
 
-        return view('admin.index')->with('usuarios', $usuarios)->with('publicaciones', $publicaciones)->with('imagenes', $imagenes)->with('comentarios', $comentarios);
+        return view('admin.index')->with('usuarios', $usuarios)->with('publicaciones', $publicaciones)->with('imagenes', $imagenes)->with('comentarios', $comentarios)->with('reportesPendientes', $reportesPendientes);
     }
 
     /**

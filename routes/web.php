@@ -115,7 +115,10 @@ Route::group(['prefix'=>'/Admin', 'middleware'=>['admin']], function(){
 		'as' => 'eliminar.post'
 	]);
 
-
+	Route::get('Reportes', [
+		'uses' => 'ReportController@index',
+		'as' => 'reports.index'
+	]);
 
 
 });
