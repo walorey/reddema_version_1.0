@@ -124,8 +124,8 @@ Route::group(['prefix'=>'/Admin', 'middleware'=>['admin']], function(){
 	]);
 
 	Route::get('/buscar', [
-		'uses' => 'PostController@buscar',
-		'as' => 'buscar.post'
+		'uses' => 'AdminController@buscar',
+		'as' => 'buscar.post.admin'
 	]);
 
 	Route::get('Reportes', [

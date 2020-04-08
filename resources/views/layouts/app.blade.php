@@ -57,6 +57,20 @@
                         @else
                             {{-- <notifications></notifications> --}}
 
+                            <li class="nav-item">
+                                <form class="form-inline" action="{{route('buscar.post')}}" method="get">
+                                    @csrf
+                                    @if(isset($busqueda))
+                                    <input class="form-control mr-sm-2" type="search" placeholder="Buscar" name="busqueda" aria-label="Search" value="{{$busqueda}}">
+                                    @else
+                                    <input class="form-control mr-sm-2" type="search" placeholder="Buscar" name="busqueda" aria-label="Search">
+                                    @endif
+                                    <button class="btn btn-primary" type="submit">
+                                      <i class="fas fa-search fa-sm"></i>
+                                    </button>
+                                </form>
+                            </li>
+
                             <li class="nav-item dropdown">
                                 <a class="nav-link nombre-usuario" href="{{ route('notifications.index')}}" v-pre>Notificaciones
 

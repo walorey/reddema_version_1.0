@@ -161,4 +161,14 @@ class AdminController extends Controller
 
         return redirect()->route('admin.posts.index')->with('mensaje', 'Se ha eliminado la publicación: '.$post->title);
     }
+
+    public function buscar(Request $request)
+    {
+        $title = $request->busqueda;
+        $description = $request->busqueda;
+
+        $posts = Post::orderBy('id', 'DESC')->title($title)->description($description)->paginate(10);
+
+        return view('admin.publicaciones')->with('posts', $posts);
+    }
 }
