@@ -173,6 +173,16 @@ class PostController extends Controller
 
     }
 
+    public function buscar(Request $request)
+    {
+        $title = $request->busqueda;
+        $description = $request->busqueda;
+
+        $posts = Post::orderBy('id', 'DESC')->title($title)->description($description)->paginate(10);
+
+        return view('admin.publicaciones')->with('posts', $posts);
+    }
+
     public function verZona($name, $id)
     {
         $zone = $id;

@@ -45,7 +45,17 @@
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Lista de usuarios</h6>
+
+              <nav class="navbar navbar-light bg-light">
+                <h6 class="m-0 font-weight-bold text-primary">Lista de usuarios</h6>
+                <form class="form-inline">
+                  <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search">
+                  <button class="btn btn-primary" type="button">
+                        <i class="fas fa-search fa-sm"></i>
+                  </button>
+                </form>
+              </nav>
+
             </div>
             <div class="card-body">
               <div class="table-responsive">

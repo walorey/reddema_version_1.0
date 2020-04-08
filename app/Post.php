@@ -54,4 +54,19 @@ class Post extends Model
         }
     }
 
+    public function scopeTitle($query, $title)
+    {
+        if($title)
+        {
+            return $query->orWhere('title','LIKE', "%$title%");
+        }
+    }
+
+    public function scopeDescription($query, $description)
+    {
+        if($description)
+        {
+            return $query->orWhere('description','LIKE', "%$description%");
+        }
+    }
 }

@@ -28,9 +28,15 @@ Route::group(['middleware' => 'auth'], function(){
 	]);
 
 	Route::get('/filtros', [
-		'uses'=> 'PostController@filtrar',
-		'as'=> 'filtrar.post'
+		'uses' => 'PostController@filtrar',
+		'as' => 'filtrar.post'
 	 ]);
+
+	Route::get('/buscar', [
+		'uses' => 'PostController@buscar',
+		'as' => 'buscar.post'
+	]);
+
 
 	Route::get('Zona/{name}/{id}', [
 		'uses' => 'PostController@verZona',
@@ -105,6 +111,8 @@ Route::group(['prefix'=>'/Admin', 'middleware'=>['admin']], function(){
 		'as' => 'eliminar.usuario'
 	]);
 
+	//publicaciones
+
 	Route::get('/Publicaciones', [
 		'uses' => 'AdminController@publicacionesIndex',
 		'as' => 'admin.posts.index'
@@ -113,6 +121,11 @@ Route::group(['prefix'=>'/Admin', 'middleware'=>['admin']], function(){
 	Route::post('Eliminar/Publicacion/{id}', [
 		'uses' => 'AdminController@eliminarPublicacion',
 		'as' => 'eliminar.post'
+	]);
+
+	Route::get('/buscar', [
+		'uses' => 'PostController@buscar',
+		'as' => 'buscar.post'
 	]);
 
 	Route::get('Reportes', [

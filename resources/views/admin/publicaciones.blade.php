@@ -29,6 +29,16 @@
               </div>
             @endif
 
+    <nav class="navbar navbar-light bg-light">
+      <h6 class="m-0 font-weight-bold text-primary">Publicaciones</h6>
+      <form class="form-inline" action="{{route('buscar.post')}}" method="get">
+        @csrf
+        <input class="form-control mr-sm-2" type="search" placeholder="Buscar" name="busqueda" aria-label="Search">
+        <button class="btn btn-primary" type="submit">
+          <i class="fas fa-search fa-sm"></i>
+        </button>
+      </form>
+    </nav>
 
     @foreach($posts as $post)
     <div class="row">
