@@ -3,6 +3,17 @@
 				  <div class="card-body">
 				  	<form action="{{route('filtrar.post')}}" method="get">
 				  		@csrf
+
+                        @if(isset($busqueda))
+                        	<label>Buscar por palabra</label>
+                        	<input class="form-control mr-sm-2" type="search" placeholder="Buscar" name="busqueda" aria-label="Search" value="{{$busqueda}}">
+                        @else
+                        	<label>Buscar por palabra</label>
+                            <input class="form-control mr-sm-2" type="search" placeholder="Buscar" name="busqueda" aria-label="Search">
+                        @endif
+
+                        <br>
+
 				  		<label for="exampleFormControlSelect1">Categorías</label>
 						<select class="form-control" id="exampleFormControlSelect1" name="category">
 
