@@ -47,7 +47,13 @@
 
 			  <div class="card-body">
 			    <h5 class="card-title">{{$post->title}}</h5>
-			    <p class="card-text">{{$post->description}}</p>
+			    <p class="card-text">
+			    	{{substr($post->description, 0,197)}}
+			    	@if(strlen($post->description)>197)
+			    		<b>...</b>
+			    		<a href="{{route('posts.show', $post->id)}}">Ver más</a>
+			    	@endif
+			    </p>
 			    <div class="container">
 			    	<div class="row">
 				    @foreach($post->images as $image)

@@ -94,6 +94,12 @@ Route::group(['middleware' => ['auth','verified']], function(){
 		'uses' => 'ReportController@report',
 		'as' => 'reports.make'
 	]);
+
+	// Perfil
+
+	Route::get('/perfil', function(){
+		return view('users.perfil');
+	});
 });
 
 Route::group(['prefix'=>'/Admin', 'middleware'=>['admin' , 'verified']], function(){
