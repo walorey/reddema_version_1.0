@@ -97,9 +97,11 @@ Route::group(['middleware' => ['auth','verified']], function(){
 
 	// Perfil
 
-	Route::get('/perfil', function(){
-		return view('users.perfil');
-	});
+	Route::get('{slug}', [
+		'uses' => 'UserController@verPerfil',
+		'as' => 'mostrar.perfil'
+	]);
+
 });
 
 Route::group(['prefix'=>'/Admin', 'middleware'=>['admin' , 'verified']], function(){
@@ -108,6 +110,8 @@ Route::group(['prefix'=>'/Admin', 'middleware'=>['admin' , 'verified']], functio
 		'uses' => 'AdminController@index',
 		'as' => 'home.admin'
 	]);
+
+	//renombre ruta users.index
 
 	Route::get('/Usuarios', [
 		'uses' => 'AdminController@userIndex',

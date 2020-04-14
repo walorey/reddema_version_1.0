@@ -53,7 +53,7 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
                       {{-- <div class="dropdown-header">Dropdown Header:</div> --}}
-                      <a class="dropdown-item text-center" href="#">Ver perfil de usuario</a>
+                      <a class="dropdown-item text-center" href="{{route('mostrar.perfil', $post->user->slug)}}" target="_blank">Ver perfil de usuario</a>
                       <a class="dropdown-item text-center" href="{{route('posts.show', $post->id)}}" target="_blank">Ver publicación completa</a>
                       <div class="dropdown-divider"></div>
                       <a class="dropdown-item text-center" href="#" data-target="#eliminarpostModal{{$post->id}}" data-toggle="modal">Eliminar</a>

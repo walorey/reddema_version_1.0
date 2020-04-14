@@ -14,9 +14,9 @@ class AddCamposToUserTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('avatar')->default('/img/avatar/avatar.png');
+            $table->string('avatar')->default('/img/avatares/avatar.jpg');
             $table->string('descripcion', 188)->nullable();
-            $table->string('slug')->nullable();
+            $table->string('slug')->nullable()->unique();
         });
     }
 
@@ -28,7 +28,9 @@ class AddCamposToUserTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            //
+            $table->dropColumn('avatar');
+            $table->dropColumn('descripcion');
+            $table->dropColumn('slug');
         });
     }
 }

@@ -15,11 +15,11 @@
 
 					  <div class="row no-gutters">
 					    <div class="col-md-4">
-					      <img src="{{asset('img/perfil2.jpg')}}" class="card-img rounded-circle mx-auto d-block" style="width: 170px; height: 170px;" alt="...">
+					      <img src="{{asset('/img/avatares/avatar.jpg')}}" class="card-img rounded-circle mx-auto d-block" style="width: 170px; height: 170px;" alt="...">
 					    </div>
 					    <div class="col-md-8">
 					      <div class="card-body">
-					        <p class="h2 text-center">Braian Pedrozo</p>
+					        <p class="h2 text-center">{{$usuario->name.' '.$usuario->lastname}}</p>
 					        <p>Me considero proactivo, tuve malas experiencias con gatos de chico, ahora me dan lo mismo, pero todo bien. A los perros me los banco. Tengo un mezcla de labrador que se llama 'negro', bah.</p>
 					      </div>
 					    </div>
