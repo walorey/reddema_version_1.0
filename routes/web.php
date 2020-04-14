@@ -6,9 +6,11 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Auth::routes(['verify' => true]);
 
 
-Route::group(['middleware' => 'auth'], function(){
+
+Route::group(['middleware' => ['auth','verified']], function(){
 
 	Route::get('/home', 'PostController@index')->name('home');
 
@@ -94,7 +96,7 @@ Route::group(['middleware' => 'auth'], function(){
 	]);
 });
 
-Route::group(['prefix'=>'/Admin', 'middleware'=>['admin']], function(){
+Route::group(['prefix'=>'/Admin', 'middleware'=>['admin' , 'verified']], function(){
 
 	Route::get('/Panel', [
 		'uses' => 'AdminController@index',
