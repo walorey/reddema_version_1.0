@@ -71,6 +71,6 @@
     @include('admin.includes.eliminarPublicacion')
     @endforeach
 
-
+    <a href="{{route('home.admin')}}" title="Volver"><button type="button" class="btn btn-secondary"><i class="fas fa-reply"></i></button></a>
 </div>
 @endsection

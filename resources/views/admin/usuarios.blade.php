@@ -3,12 +3,11 @@
 @section('content')
 <div class="container">
 
-        <!-- Begin Page Content -->
         <div class="container-fluid">
 
-          <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">Usuarios</h1>
-          <p class="mb-4">En esta sección se puede visualizar, editar y otorgar permisos a usuarios.</p>
+            <h1 class="h3 mb-2 text-gray-800">Usuarios</h1>
+            <p class="mb-4">En esta sección se puede visualizar, editar y otorgar permisos a usuarios.</p>
+
 
             @if ($errors->any())
               <div class="alert alert-danger fade show">
@@ -100,7 +99,7 @@
             </div>
           </div>
 
-
+          <a href="{{route('home.admin')}}" title="Volver"><button type="button" class="btn btn-secondary"><i class="fas fa-reply"></i></button></a>
 
         </div>
         <!-- /.container-fluid -->
