@@ -30,6 +30,9 @@ Route::group(['middleware' => ['auth', 'verified']], function(){
 		'uses' => 'ReportController@ReportarPerfil',
 		'as' => 'reports.perfil.make'
 	]);
+
+
+
 });
 
 Route::group(['middleware' => ['auth','verified']], function(){
@@ -108,6 +111,7 @@ Route::group(['middleware' => ['auth','verified']], function(){
 		'as' => 'notifications.show'
 	]);
 
+
 	// Reportes
 
 	Route::resource('reports', 'ReportController');
@@ -115,6 +119,17 @@ Route::group(['middleware' => ['auth','verified']], function(){
 	Route::post('Reportar/{id}', [
 		'uses' => 'ReportController@report',
 		'as' => 'reports.make'
+	]);
+
+	Route::post('Resolver/{id}', [
+		'uses' => 'ReportController@resolver',
+		'as' => 'reports.resolver'
+	]);
+
+	//mostrar reporte resuelto
+	Route::get('Notificaciones/reporte-resuelto/{id}', [
+		'uses' => 'NotificacionesController@reporteResuelto',
+		'as' => 'notifications.reporteResuelto'
 	]);
 
 	// Perfil

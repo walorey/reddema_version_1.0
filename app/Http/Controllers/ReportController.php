@@ -8,6 +8,7 @@ use App\Post;
 use Illuminate\Http\Request;
 use App\Http\Requests\ReportRequest;
 use Illuminate\Support\Facades\Auth;
+use App\Notifications\ReportResolved;
 
 class ReportController extends Controller
 {
@@ -120,5 +121,26 @@ class ReportController extends Controller
         $report->save();
 
         return back()->with('reporteEnviado', 'Recibimos tu reporte y lo analizaremos. Gracias por ayudar a mantener el orden de Reddema!');
+    }
+
+    public function resolver(Request $request, $id)
+    {
+
+        $reporte = Report::find($id);
+
+        $reporte->status = true;
+
+        $solucion = $request->solucion;
+
+        $reporte->resultado = $solucion;
+
+        $acusador = $reporte->accuser;
+
+        $acusador->notify(new ReportResolved($reporte, $solucion));
+
+        $reporte->save();
+
+        return redirect()->route('reports.index')->with('mensaje', 'Reporte actualizado!');
+
     }
 }

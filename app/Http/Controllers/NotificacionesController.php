@@ -57,6 +57,8 @@ class NotificacionesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    //este metodo le muestra a un usuario que su contenido fue eliminado, deberia cambiarle el nombre por que voy a mostrar otro tipo de notificaciones, como cuando se muestra un reporte resuelto
     public function show($id)
     {
         $notificacion = DatabaseNotification::find($id);
@@ -120,5 +122,18 @@ class NotificacionesController extends Controller
         // }
 
         return back()->with('flash', 'Notificacion eliminada');
+    }
+
+    public function reporteResuelto($id)
+    {
+        $notificacion = DatabaseNotification::find($id);
+
+        if ($notificacion->data['user']['id'] == Auth::user()->id) {
+            return view('notifications.reporteResuelto')->with('notificacion', $notificacion);
+        }
+        else{
+            dd('no puedes ver esta notificacion');
+            return redirect()->route('home');
+        }
     }
 }
