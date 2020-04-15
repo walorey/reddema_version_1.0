@@ -8,7 +8,29 @@ Auth::routes();
 
 Auth::routes(['verify' => true]);
 
+//tuve que meter la ruta 'editar-perfil' en otro group por que decia que no encontraba la ruta, no se por que
 
+Route::group(['middleware' => ['auth', 'verified']], function(){
+
+	Route::get('editar-perfil', [
+		'uses' => 'UserController@editarPerfil',
+		'as' => 'editar.perfil'
+	]);
+
+	//actualizar perfil
+
+	Route::post('actualizar-perfil', [
+		'uses' => 'UserController@actualizarPerfil',
+		'as' => 'actualizar.perfil'
+	]);
+
+	// reportar perfil
+
+	Route::post('ReportarPerfil/{id}', [
+		'uses' => 'ReportController@ReportarPerfil',
+		'as' => 'reports.perfil.make'
+	]);
+});
 
 Route::group(['middleware' => ['auth','verified']], function(){
 
@@ -101,6 +123,10 @@ Route::group(['middleware' => ['auth','verified']], function(){
 		'uses' => 'UserController@verPerfil',
 		'as' => 'mostrar.perfil'
 	]);
+
+	//editar perfil
+
+
 
 });
 

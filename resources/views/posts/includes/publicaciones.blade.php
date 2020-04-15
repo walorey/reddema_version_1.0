@@ -41,7 +41,7 @@
                   </div>
                  </span>
 				@endif
-				<span class="float-right">{{$post->user->name}} {{$post->user->lastname}}</span>
+				<span class="float-right"><a href="{{route('mostrar.perfil', $post->user->slug)}}">{{$post->user->name}} {{$post->user->lastname}}</a></span>
 
 			  </div>
 

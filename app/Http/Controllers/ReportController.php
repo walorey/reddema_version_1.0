@@ -107,4 +107,18 @@ class ReportController extends Controller
 
         return back()->with('reporteEnviado', 'Recibimos tu reporte y lo analizaremos. Gracias por ayudar a mantener el orden de Reddema!');
     }
+
+    public function reportarPerfil(ReportRequest $request, $id)
+    {
+        $acusado = User::find($id);
+
+        $report = new Report($request->all());
+        $report->accuser_id = Auth::User()->id;
+        $report->accused_id = $acusado->id;
+        $report->ruta = route('mostrar.perfil', $acusado->slug);
+
+        $report->save();
+
+        return back()->with('reporteEnviado', 'Recibimos tu reporte y lo analizaremos. Gracias por ayudar a mantener el orden de Reddema!');
+    }
 }
