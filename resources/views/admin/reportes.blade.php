@@ -53,6 +53,7 @@
 			  	{{$resuelto->resultado}}
 			  </div>
 			</div>
+			<br>
 			@endforeach
 			{!! $resueltos->render()!!}
 		</div>

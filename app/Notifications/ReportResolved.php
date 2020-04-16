@@ -42,6 +42,7 @@ class ReportResolved extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
+                    ->subject('Revisamos tu reporte')
                     ->line('Hola! Revisamos tu reporte: "'.$this->report->title.'"')
                     ->line('Devolución: '.$this->solucion)
                     ->action('ver en Reddema', route('notifications.reporteResuelto' ,$this->id))

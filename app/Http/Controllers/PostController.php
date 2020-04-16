@@ -14,6 +14,7 @@ use Validator;
 use App\Commentary;
 // use App\Notification;
 use App\Notifications\NewComment;
+use App\Notifications\someoneCommented;
 use Barryvdh\DomPDF\Facade as PDF;
 
 
@@ -227,19 +228,19 @@ class PostController extends Controller
         $comentario->save();
 
         $post = Post::find($id);
+        $comentaristas = $post->comments()->with('user')->get()->pluck('user')->unique();
+        $elquepublico = User::find($post->user->id);
 
-        $user = User::find($post->user->id);
-        if (Auth::User()->id !== $user->id) {
-           $user->notify(new NewComment($comentario));
+        if (Auth::User()->id !== $elquepublico->id) {
+           $elquepublico->notify(new NewComment($comentario));
         }
 
+        foreach ($comentaristas as $usuario) {
+            if ($usuario->id !== Auth::User()->id && $usuario->id !== $elquepublico->id) {
+                $usuario->notify(new someoneCommented($comentario));
+            }
+        }
 
-
-        // $notificacion = New Notification;
-        // $notificacion->addressee_user_id = $post->user->id;
-        // $notificacion->generator_user_id = Auth::User()->id;
-        // $notificacion->post_id = $post->id;
-        // $notificacion->save();
 
         $mensaje = "¡Su comentario ha sido enviado!";
 
