@@ -8,6 +8,29 @@ Auth::routes();
 
 Auth::routes(['verify' => true]);
 
+//aca solo va a ir la configuracion por que la necesitas si tenes que cambiar un email y no esta verificado
+
+Route::group(['middleware' => ['auth']], function(){
+
+	//editar configuracion
+
+	Route::get('/configuracion',  [
+		'uses' => 'UserController@configuracion',
+		'as' =>'config'
+	]);
+
+	Route::post('/cambiarEmail', [
+		'uses' => 'UserController@cambiarEmail',
+		'as' => 'cambiar.email'
+	]);
+
+	Route::post('/cambiarContra', [
+		'uses' => 'UserController@cambiarContra',
+		'as' => 'cambiar.contra'
+	]);
+
+});
+
 //tuve que meter la ruta 'editar-perfil' en otro group por que decia que no encontraba la ruta, no se por que
 
 Route::group(['middleware' => ['auth', 'verified']], function(){
@@ -29,13 +52,6 @@ Route::group(['middleware' => ['auth', 'verified']], function(){
 	Route::post('ReportarPerfil/{id}', [
 		'uses' => 'ReportController@ReportarPerfil',
 		'as' => 'reports.perfil.make'
-	]);
-
-		//editar configuracion
-
-	Route::get('/configuracion',  [
-		'uses' => 'UserController@configuracion',
-		'as' =>'config'
 	]);
 
 });

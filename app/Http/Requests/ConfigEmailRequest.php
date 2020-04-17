@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ConfigRequest extends FormRequest
+class ConfigEmailRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,15 @@ class ConfigRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required|unique:users,email'
+            'email' => 'required|unique:users,email',
+            'password_actual' => 'required'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'password_actual.required' => 'Debe ingresar su contraseña actual'
         ];
     }
 }

@@ -8,7 +8,9 @@ use App\User;
 use App\Post;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\EditarPerfilRequest;
-use App\Http\Requests\ConfigRequest;
+use App\Http\Requests\ConfigEmailRequest;
+use App\Http\Requests\ConfigContraRequest;
+use App\Http\Requests\BorrarCuentaRequest;
 
 class UserController extends Controller
 {
@@ -72,11 +74,8 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ConfigRequest $request, $id)
+    public function update(Request $request, $id)
     {
-        $usuario =  User::find($id);
-
-        dd('todo bien');
 
     }
 
@@ -126,4 +125,32 @@ class UserController extends Controller
         return redirect()->route('editar.perfil')->with('verde', '¡Perfil modificado!');
     }
 
+    public function cambiarEmail(ConfigEmailRequest $request)
+    {
+        $emailNuevo = $request->email;
+        $password_actual = $request->password_actual;
+        $usuario = Auth::user();
+
+        if (!Auth::attempt(['email' => Auth::user()->email, 'password' => $password_actual])) {
+            return redirect()->route('config')->with('rojo', 'La contraseña actual no es correcta');
+        }
+        else
+        {
+            $usuario->email = $emailNuevo;
+            $usuario->email_verified_at = NULL;
+            $usuario->save();
+            $usuario->sendEmailVerificationNotification();
+            return redirect()->route('config')->with('verde', 'Se cambio el email correctamente, verifiquelo para tener acceso a la página.');
+        }
+    }
+
+    public function cambiarContra(ConfigContraRequest $request, $id)
+    {
+
+    }
+
+    public function borrarCuenta(BorrarCuentaRequest $request, $id)
+    {
+
+    }
 }
