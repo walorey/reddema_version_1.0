@@ -116,7 +116,7 @@ class AdminController extends Controller
         // dd($user->id,$admin->id);
 
         if ($user->id==Auth::user()->id){
-            return redirect()->back()->with('alerta', 'No puedes eliminarte en el panel, si quieres desactivar tu cuenta ve a tu configuración');
+            return redirect()->back()->with('rojo', 'No puedes eliminarte en el panel, si quieres desactivar tu cuenta ve a tu configuración');
             // $user->id == Auth::user()->id;
         }
         else{
@@ -125,7 +125,7 @@ class AdminController extends Controller
             //eliminar
             $user->delete();
             //retornar
-            return redirect()->route('users.index')->with('mensaje', 'Se ha eliminado al usuario: '.$user->name.' '.$user->lastname);
+            return redirect()->route('users.index')->with('amarillo', 'Se ha eliminado al usuario: '.$user->name.' '.$user->lastname);
         }
 
 
@@ -159,7 +159,7 @@ class AdminController extends Controller
 
         //redirijo a la seccion publicaciones para informar que se borro correctamente
 
-        return redirect()->route('admin.posts.index')->with('mensaje', 'Se ha eliminado la publicación: '.$post->title);
+        return redirect()->route('admin.posts.index')->with('amarillo', 'Se ha eliminado la publicación: '.$post->title);
     }
 
     public function buscar(Request $request)

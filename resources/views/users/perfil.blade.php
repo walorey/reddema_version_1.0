@@ -1,16 +1,7 @@
 @extends('layouts.app')
 @section('content')
 	<div class="container">
-		@if (session('reporteEnviado'))
-	    <div class="alert alert-warning fade show">
-	        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-	            <span aria-hidden="true">&times;</span>
-	        </button>
-	        <ul>
-	            {{session('reporteEnviado')}}
-	        </ul>
-	    </div>
-	    @endif
+		@include('alertas')
 		<div class="row justify-content-center">
 			<div class="col-md-8">
 				<div class="card">
@@ -50,6 +41,18 @@
 				</div>
 
 				<br>
+
+
+			<!-- Image and text -->
+			<nav class="navbar navbar-light separador-perfil rounded">
+				<a href="#" class="navbar-brand">
+					<img src="{{asset('img/ico.png')}}" width="25" height="25" class="d-inline-block align-top" alt="">
+					<span class="text-light">Publicaciones de {{$usuario->name.' '.$usuario->lastname}}</span>
+
+				</a>
+			</nav>
+
+			<br>
 
 			@foreach($posts as $post)
 				<div class="card mb-3">

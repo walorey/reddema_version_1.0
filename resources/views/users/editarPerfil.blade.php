@@ -1,30 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
-
-		@if (session('mensaje'))
-	    <div class="alert alert-success fade show">
-	    	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-			    <span aria-hidden="true">&times;</span>
-			</button>
-	        <ul>
-				{{session('mensaje')}}
-	        </ul>
-	    </div>
-		@endif
-		@if ($errors->any())
-	    <div class="alert alert-danger fade show">
-	    	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-			    <span aria-hidden="true">&times;</span>
-			</button>
-	        <ul>
-	            @foreach ($errors->all() as $error)
-	                <li>{{ $error }}</li>
-	            @endforeach
-	        </ul>
-	    </div>
-	    @endif
-
+	@include('alertas')
 	<div class="row justify-content-center">
 		<div class="col-md-8">
 			<div class="card">

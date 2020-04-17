@@ -8,6 +8,7 @@ use App\User;
 use App\Post;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\EditarPerfilRequest;
+use App\Http\Requests\ConfigRequest;
 
 class UserController extends Controller
 {
@@ -71,9 +72,12 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ConfigRequest $request, $id)
     {
-        //
+        $usuario =  User::find($id);
+
+        dd('todo bien');
+
     }
 
     /**
@@ -85,6 +89,11 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function configuracion()
+    {
+        return view('users.configuracion');
     }
 
     public function editarPerfil()
@@ -114,7 +123,7 @@ class UserController extends Controller
 
         $usuario->save();
 
-        return redirect()->route('editar.perfil')->with('mensaje', '¡Perfil modificado!');
+        return redirect()->route('editar.perfil')->with('verde', '¡Perfil modificado!');
     }
 
 }

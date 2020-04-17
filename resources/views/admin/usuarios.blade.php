@@ -2,45 +2,13 @@
 
 @section('content')
 <div class="container">
-
+        @include('alertas')
         <div class="container-fluid">
 
-            <h1 class="h3 mb-2 text-gray-800">Usuarios</h1>
-            <p class="mb-4">En esta sección se puede visualizar, editar y otorgar permisos a usuarios.</p>
+          <h1 class="h3 mb-2 text-gray-800">Usuarios</h1>
 
+          <p class="mb-4">En esta sección se puede visualizar, editar y otorgar permisos a usuarios.</p>
 
-            @if ($errors->any())
-              <div class="alert alert-danger fade show">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-              </button>
-                  <ul>
-                      @foreach ($errors->all() as $error)
-                          <li>{{ $error }}</li>
-                      @endforeach
-                  </ul>
-              </div>
-            @endif
-            @if (session('mensaje'))
-              <div class="alert alert-warning fade show">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-              </button>
-                  <ul>
-                {{session('mensaje')}}
-                  </ul>
-              </div>
-            @endif
-            @if (session('alerta'))
-              <div class="alert alert-danger fade show">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-              </button>
-                  <ul>
-                {{session('alerta')}}
-                  </ul>
-              </div>
-            @endif
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">

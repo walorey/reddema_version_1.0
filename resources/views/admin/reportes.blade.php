@@ -1,16 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
-	@if (session('mensaje'))
-    <div class="alert alert-success fade show">
-    	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-		    <span aria-hidden="true">&times;</span>
-		</button>
-        <ul>
-			{{session('mensaje')}}
-        </ul>
-    </div>
-	@endif
+@include('alertas')
 	<h1>Reportes</h1>
 	<div class="row">
 		<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">

@@ -106,7 +106,7 @@ class ReportController extends Controller
 
         $report->save();
 
-        return back()->with('reporteEnviado', 'Recibimos tu reporte y lo analizaremos. Gracias por ayudar a mantener el orden de Reddema!');
+        return back()->with('amarillo', 'Recibimos tu reporte y lo analizaremos. Gracias por ayudar a mantener el orden de Reddema!');
     }
 
     public function reportarPerfil(ReportRequest $request, $id)
@@ -120,7 +120,7 @@ class ReportController extends Controller
 
         $report->save();
 
-        return back()->with('reporteEnviado', 'Recibimos tu reporte y lo analizaremos. Gracias por ayudar a mantener el orden de Reddema!');
+        return back()->with('amarillo', 'Recibimos tu reporte y lo analizaremos. Gracias por ayudar a mantener el orden de Reddema!');
     }
 
     public function resolver(Request $request, $id)
@@ -140,7 +140,7 @@ class ReportController extends Controller
 
         $reporte->save();
 
-        return redirect()->route('reports.index')->with('mensaje', 'Reporte actualizado!');
+        return redirect()->route('reports.index')->with('verde', 'Reporte actualizado!');
 
     }
 }

@@ -31,7 +31,12 @@ Route::group(['middleware' => ['auth', 'verified']], function(){
 		'as' => 'reports.perfil.make'
 	]);
 
+		//editar configuracion
 
+	Route::get('/configuracion',  [
+		'uses' => 'UserController@configuracion',
+		'as' =>'config'
+	]);
 
 });
 
@@ -138,9 +143,6 @@ Route::group(['middleware' => ['auth','verified']], function(){
 		'uses' => 'UserController@verPerfil',
 		'as' => 'mostrar.perfil'
 	]);
-
-	//editar perfil
-
 
 
 });

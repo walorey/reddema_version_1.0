@@ -4,7 +4,7 @@
 	<div class="row">
 		<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12"></div>
 		<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-			@include('posts.includes.alertas')
+			@include('alertas')
 			<div class="card">
 			  <div class="card-header">
 			  <span style="font-size: 19px;">{{$post->title}}</span>
@@ -18,7 +18,7 @@
                       <a class="dropdown-item text-center" href="{{route('posts.edit', $post->id)}}">Editar</a>
                       <a class="dropdown-item text-center" href="{{route('exportar.post', $post->id)}}" target="_blank">Imprimir</a>
                       <div class="dropdown-divider"></div>
-                      <a class="dropdown-item text-center" type="button" data-toggle="modal" data-target=".bd-example-modal-sm">Eliminar</a>
+                      <a class="dropdown-item text-center" type="button" data-toggle="modal" data-target="#eliminarPost{{$post->id}}">Eliminar</a>
                     </div>
                   </div>
 			  	</span>
@@ -29,7 +29,7 @@
                       <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                      <a class="dropdown-item text-center" href="#">Reportar</a>
+                      <a class="dropdown-item text-center" type="button" data-toggle="modal" data-target="#modalReport{{$post->id}}">Reportar</a>
                     </div>
                   </div>
                  </span>
@@ -95,7 +95,7 @@
 			@else
 					@foreach($post->comments as $comentario)
 					<div class="media" style="background-color: #FFFFFF">
-					  <img src="{{asset('img/avatar-comentario.jpg')}}" class="align-self-start mr-3" alt="..." style="width: 64px; height: 64px;">
+					  <img src="{{asset($comentario->user->avatar)}}" class="align-self-start mr-3" alt="..." style="width: 64px; height: 64px;">
 					  <div class="media-body">
 					    <h5 class="mt-2">{{$comentario->user->name}} {{$comentario->user->lastname}}</h5>
 					    <p>{{$comentario->body}}</p>
@@ -134,5 +134,6 @@
 		<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12"></div>
 	</div>
 </div>
+@include('posts.includes.reportarPublicacion')
 @include('posts.includes.eliminarPublicacion')
 @endsection

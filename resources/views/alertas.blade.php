@@ -10,43 +10,33 @@
         </ul>
     </div>
 	@endif
-	@if (session('mensaje'))
+	@if (session('verde'))
     <div class="alert alert-success fade show">
     	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 		    <span aria-hidden="true">&times;</span>
 		</button>
         <ul>
-			{{session('mensaje')}}
+			{{session('verde')}}
         </ul>
     </div>
 	@endif
-    @if (session('publicacionEliminada'))
-    <div class="alert alert-success fade show">
+    @if (session('rojo'))
+    <div class="alert alert-danger fade show">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
         <ul>
-            {{session('publicacionEliminada')}}
+            {{session('rojo')}}
         </ul>
     </div>
     @endif
-    @if (session('actualizacion'))
-    <div class="alert alert-success fade show">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-        <ul>
-            {{session('actualizacion')}}
-        </ul>
-    </div>
-    @endif
-    @if (session('reporteEnviado'))
+    @if (session('amarillo'))
     <div class="alert alert-warning fade show">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
         <ul>
-            {{session('reporteEnviado')}}
+            {{session('amarillo')}}
         </ul>
     </div>
     @endif

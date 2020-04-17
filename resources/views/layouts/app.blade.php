@@ -84,7 +84,7 @@
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a href="{{route('mostrar.perfil', Auth::user()->slug)}}" class="dropdown-item text-center">Perfil</a>
-                                    <a href="#" class="dropdown-item text-center">Configuración</a>
+                                    <a href="{{route('config')}}" class="dropdown-item text-center">Configuración</a>
 
                                     @if(Auth::user()->type == "admin")
                                     <a href="{{route('home.admin')}}" class="dropdown-item text-center">Administrar</a>

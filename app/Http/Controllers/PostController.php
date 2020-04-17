@@ -90,7 +90,7 @@ class PostController extends Controller
 
 
 
-        return redirect()->route('home')->with('mensaje', 'Se ha creado tu publicación');
+        return redirect()->route('home')->with('verde', 'Se ha creado tu publicación');
 
     }
 
@@ -144,7 +144,7 @@ class PostController extends Controller
         $post->save();
 
 
-        return redirect()->route('posts.show', $post->id)->with('actualizacion', 'Se ha actualizado su publicación');
+        return redirect()->route('posts.show', $post->id)->with('verde', 'Se ha actualizado su publicación');
     }
 
     /**
@@ -158,7 +158,7 @@ class PostController extends Controller
         $post = Post::find($id);
         $post->delete();
 
-        return redirect()->route('home')->with('publicacionEliminada', 'Se ha eliminado la publicacion');
+        return redirect()->route('home')->with('amarillo', 'Se ha eliminado la publicacion');
     }
 
     public function filtrar(Request $request)

@@ -25,7 +25,7 @@
                       <a class="dropdown-item text-center" href="{{route('posts.edit', $post->id)}}">Editar</a>
                       <a class="dropdown-item text-center" href="{{route('exportar.post', $post->id)}}" target="_blank">Imprimir</a>
                       <div class="dropdown-divider"></div>
-                      <a class="dropdown-item text-center" type="button" data-toggle="modal" data-target=".bd-example-modal-sm">Eliminar</a>
+                      <a class="dropdown-item text-center" type="button" data-toggle="modal" data-target="#eliminarPost{{$post->id}}">Eliminar</a>
                     </div>
                   </div>
 			  	</span>

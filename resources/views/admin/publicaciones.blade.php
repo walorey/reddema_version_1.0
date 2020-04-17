@@ -6,28 +6,7 @@
     <h1 class="h3 mb-2 text-gray-800">Publicaciones</h1>
     <p class="mb-4">En esta sección se puede visualizar todas las publicaciones, y eliminarlas si fuese necesario.</p>
 
-            @if ($errors->any())
-              <div class="alert alert-danger fade show">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-              </button>
-                  <ul>
-                      @foreach ($errors->all() as $error)
-                          <li>{{ $error }}</li>
-                      @endforeach
-                  </ul>
-              </div>
-            @endif
-            @if (session('mensaje'))
-              <div class="alert alert-warning fade show">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-              </button>
-                  <ul>
-                {{session('mensaje')}}
-                  </ul>
-              </div>
-            @endif
+    @include('alertas')
 
     <nav class="navbar navbar-light bg-light">
       <h6 class="m-0 font-weight-bold text-primary">Publicaciones</h6>
