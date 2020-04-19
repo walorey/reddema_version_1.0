@@ -162,6 +162,14 @@ class UserController extends Controller
 
     public function borrarCuenta(BorrarCuentaRequest $request)
     {
-
+        if ($request->check !== null ) {
+            $usuario = Auth::user();
+            $usuario->delete();
+            return redirect()->route('home');
+        }
+        else
+        {
+            return redirect()->route('config');
+        }
     }
 }

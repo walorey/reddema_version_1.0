@@ -29,6 +29,11 @@ Route::group(['middleware' => ['auth']], function(){
 		'as' => 'cambiar.contra'
 	]);
 
+	Route::post('/eliminarCuenta',[
+		'uses' => 'UserController@borrarCuenta',
+		'as' => 'eliminar.cuenta'
+	]);
+
 });
 
 //tuve que meter la ruta 'editar-perfil' en otro group por que decia que no encontraba la ruta, no se por que
