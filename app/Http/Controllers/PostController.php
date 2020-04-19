@@ -69,6 +69,7 @@ class PostController extends Controller
         $post = new Post($request->all());
         $post->user_id = Auth::User()->id;
         $post->zone_id = $request->zone;
+        $post->slug = time().'-'.Str_slug($post->title);
         $post->save();
 
 
@@ -100,9 +101,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        $post = Post::find($id);
+        $post = Post::where('slug', '=', $slug)->firstOrFail();
 
         return view('posts.publicacion')->with('post', $post);
     }
@@ -113,9 +114,10 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($slug)
     {
-        $post = Post::find($id);
+
+        $post = Post::where('slug', '=', $slug)->firstOrFail();
         $zones = Zone::all();
 
         if ($post->user->id == Auth::User()->id) {
@@ -144,7 +146,7 @@ class PostController extends Controller
         $post->save();
 
 
-        return redirect()->route('posts.show', $post->id)->with('verde', 'Se ha actualizado su publicación');
+        return redirect()->route('posts.show', $post->slug)->with('verde', 'Se ha actualizado su publicación');
     }
 
     /**
@@ -153,9 +155,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($slug)
     {
-        $post = Post::find($id);
+        $post = Post::where('slug', '=', $slug)->firstOrFail();
         $post->delete();
 
         return redirect()->route('home')->with('amarillo', 'Se ha eliminado la publicacion');
@@ -246,13 +248,13 @@ class PostController extends Controller
 
         // return view('posts.publicacion')->with('post', $post)->with('mensaje', $mensaje);
 
-        return redirect()->route('posts.show' ,$id)->with('comentarioEnviado', '¡Su comentario ha sido enviado!');
+        return redirect()->route('posts.show' ,$post->slug)->with('comentarioEnviado', '¡Su comentario ha sido enviado!');
 
     }
 
-    public function exportar($id)
+    public function exportar($slug)
     {
-        $post = Post::find($id);
+        $post = Post::where('slug', '=', $slug)->firstOrFail();
         $pdf = PDF::loadView('posts.exportar-como-pdf', compact('post'));
         return $pdf->download($post->title.'.pdf');
     }

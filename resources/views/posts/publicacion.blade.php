@@ -15,10 +15,10 @@
                       <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                      <a class="dropdown-item text-center" href="{{route('posts.edit', $post->id)}}">Editar</a>
-                      <a class="dropdown-item text-center" href="{{route('exportar.post', $post->id)}}" target="_blank">Imprimir</a>
+                      <a class="dropdown-item text-center" href="{{route('posts.edit', $post->slug)}}">Editar</a>
+                      <a class="dropdown-item text-center" href="{{route('exportar.post', $post->slug)}}" target="_blank">Imprimir</a>
                       <div class="dropdown-divider"></div>
-                      <a class="dropdown-item text-center" type="button" data-toggle="modal" data-target="#eliminarPost{{$post->id}}">Eliminar</a>
+                      <a class="dropdown-item text-center" type="button" data-toggle="modal" data-target="#eliminarPost{{$post->slug}}">Eliminar</a>
                     </div>
                   </div>
 			  	</span>

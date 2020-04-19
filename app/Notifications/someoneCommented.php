@@ -43,7 +43,7 @@ class someoneCommented extends Notification
         return (new MailMessage)
                     ->subject('Han comentado una publicación')
                     ->line($this->comentario->user->name.' '.$this->comentario->user->lastname.' comentó la publicación de: '.$this->comentario->post->user->name.' '.$this->comentario->post->user->lastname)
-                    ->action('Ver', route('posts.show' ,$this->comentario->post->id))
+                    ->action('Ver', route('posts.show' ,$this->comentario->post->slug))
                     ->line('¡Gracias por ser parte de nuestra red!');
 
     }
@@ -58,7 +58,7 @@ class someoneCommented extends Notification
     {
         return [
             'subject' => $this->comentario->user->name . " " . $this->comentario->user->lastname ." "."tambien comentó la publicación de: ".$this->comentario->post->user->name.' '.$this->comentario->post->user->lastname,
-            'link' => route('posts.show' ,$this->comentario->post->id),
+            'link' => route('posts.show' ,$this->comentario->post->slug),
             'commentary_id' => $this->comentario->id,
             'amount' => $this->comentario->amount,
             'post_id' => $this->comentario->post->id,

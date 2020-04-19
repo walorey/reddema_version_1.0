@@ -44,7 +44,7 @@ class NewComment extends Notification
         return (new MailMessage)
                     ->subject('Nuevo comentario')
                     ->line("Tienes un nuevo comentario de: {$this->commentary->user->name} {$this->commentary->user->lastname}")
-                    ->action('Ver', route('posts.show' ,$this->commentary->post->id))
+                    ->action('Ver', route('posts.show' ,$this->commentary->post->slug))
                     ->line('¡Gracias por ser parte de nuestra red!');
     }
 
@@ -58,7 +58,7 @@ class NewComment extends Notification
     {
         return [
             'subject' => $this->commentary->user->name . " " . $this->commentary->user->lastname ." "."ha comentado tu publicación",
-            'link' => route('posts.show' ,$this->commentary->post->id),
+            'link' => route('posts.show' ,$this->commentary->post->slug),
             'commentary_id' => $this->commentary->id,
             'amount' => $this->commentary->amount,
             'post_id' => $this->commentary->post->id,

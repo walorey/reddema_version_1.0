@@ -9,9 +9,9 @@
 			@foreach($pendientes as $pendiente)
 			<div class="card text-white bg-warning mb-6" style="max-width: 26rem;">
 			  <div class="card-header">
-			  	De: {{$pendiente->accuser->name.' '.$pendiente->accuser->lastname}}
+			  	De: <a href="{{route('mostrar.perfil', $pendiente->accuser->slug)}}" class="link-limpio-blanco" target="_blank">{{$pendiente->accuser->name.' '.$pendiente->accuser->lastname}}</a>
 			  	|
-			  	Para: {{$pendiente->accused->name.' '.$pendiente->accused->lastname}}
+			  	Para: <a href="{{route('mostrar.perfil', $pendiente->accused->slug)}}" class="link-limpio-blanco" target="_blank">{{$pendiente->accused->name.' '.$pendiente->accused->lastname}}</a>
 			  </div>
 			  <div class="card-body">
 			    <h5 class="card-title"><a href="{{$pendiente->ruta}}" class="link-limpio-blanco" target="_blank">{{$pendiente->title}}</a></h5>
@@ -33,8 +33,8 @@
 			@foreach($resueltos as $resuelto)
 			<div class="card text-white bg-secondary mb-6" style="max-width: 26rem;">
 			  <div class="card-header">
-			  	De: {{$resuelto->accuser->name.' '.$resuelto->accuser->lastname}} |
-			  	Para: {{$resuelto->accused->name.' '.$resuelto->accused->lastname}}
+			  	De: <a href="{{route('mostrar.perfil', $pendiente->accuser->slug)}}" class="link-limpio-blanco" target="_blank">{{$resuelto->accuser->name.' '.$resuelto->accuser->lastname}}</a> |
+			  	Para:  <a href="{{route('mostrar.perfil', $pendiente->accused->slug)}}" class="link-limpio-blanco" target="_blank">{{$resuelto->accused->name.' '.$resuelto->accused->lastname}}</a>
 			  </div>
 			  <div class="card-body">
 			    <h5 class="card-title"><a href="{{$resuelto->ruta}}" class="link-limpio-blanco" target="_blank">{{$resuelto->title}}</a></h5>

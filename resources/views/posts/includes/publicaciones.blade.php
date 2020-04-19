@@ -22,8 +22,8 @@
                       <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                      <a class="dropdown-item text-center" href="{{route('posts.edit', $post->id)}}">Editar</a>
-                      <a class="dropdown-item text-center" href="{{route('exportar.post', $post->id)}}" target="_blank">Imprimir</a>
+                      <a class="dropdown-item text-center" href="{{route('posts.edit', $post->slug)}}">Editar</a>
+                      <a class="dropdown-item text-center" href="{{route('exportar.post', $post->slug)}}" target="_blank">Imprimir</a>
                       <div class="dropdown-divider"></div>
                       <a class="dropdown-item text-center" type="button" data-toggle="modal" data-target="#eliminarPost{{$post->id}}">Eliminar</a>
                     </div>
@@ -51,7 +51,7 @@
 			    	{{substr($post->description, 0,197)}}
 			    	@if(strlen($post->description)>197)
 			    		<b>...</b>
-			    		<a href="{{route('posts.show', $post->id)}}">Ver más</a>
+			    		<a href="{{route('posts.show', $post->slug)}}">Ver más</a>
 			    	@endif
 			    </p>
 			    <div class="container">
@@ -86,7 +86,7 @@
 			  </div>
 			    <div class="card-footer text-muted">
 			    	<i class="fas fa-comment"></i>
-			    	<a href="{{route('posts.show', $post->id)}}">Comentar</a>
+			    	<a href="{{route('posts.show', $post->slug)}}">Comentar</a>
 				 </div>
 			</div>
 

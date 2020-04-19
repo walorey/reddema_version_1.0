@@ -102,7 +102,7 @@ class ReportController extends Controller
         $report = new Report($request->all());
         $report->accuser_id = Auth::User()->id;
         $report->accused_id = $acusado->id;
-        $report->ruta = route('posts.show', $post->id);
+        $report->ruta = route('posts.show', $post->slug);
 
         $report->save();
 
