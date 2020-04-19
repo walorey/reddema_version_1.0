@@ -144,12 +144,23 @@ class UserController extends Controller
         }
     }
 
-    public function cambiarContra(ConfigContraRequest $request, $id)
+    public function cambiarContra(ConfigContraRequest $request)
     {
+        $password_actual = $request->password_actual;
+        $usuario = Auth::user();
 
+        if (!Auth::attempt(['email' => Auth::user()->email, 'password' => $password_actual])) {
+            return redirect()->route('config')->with('rojo', 'La contraseña actual no es correcta');
+        }
+        else
+        {
+            $usuario->password = bcrypt($request->password);
+            $usuario->save();
+            return redirect()->route('config')->with('verde', 'Se cambio la contraseña correctamente');
+        }
     }
 
-    public function borrarCuenta(BorrarCuentaRequest $request, $id)
+    public function borrarCuenta(BorrarCuentaRequest $request)
     {
 
     }
