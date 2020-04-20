@@ -12,7 +12,11 @@
       <h6 class="m-0 font-weight-bold text-primary">Publicaciones</h6>
       <form class="form-inline" action="{{route('buscar.post.admin')}}" method="get">
         @csrf
+        @if(isset($busqueda))
+        <input value="{{$busqueda}}" class="form-control mr-sm-2" type="search" placeholder="Buscar" name="busqueda" aria-label="Search">
+        @else
         <input class="form-control mr-sm-2" type="search" placeholder="Buscar" name="busqueda" aria-label="Search">
+        @endif
         <button class="btn btn-primary" type="submit">
           <i class="fas fa-search fa-sm"></i>
         </button>
@@ -49,6 +53,8 @@
     </div>
     @include('admin.includes.eliminarPublicacion')
     @endforeach
+
+    {!! $posts->appends(Request::only(['title', 'description', 'busqueda']))->render()!!}
 
     <a href="{{route('home.admin')}}" title="Volver"><button type="button" class="btn btn-secondary"><i class="fas fa-reply"></i></button></a>
 </div>

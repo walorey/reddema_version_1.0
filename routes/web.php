@@ -85,10 +85,10 @@ Route::group(['middleware' => ['auth','verified']], function(){
 		'as' => 'filtrar.post'
 	 ]);
 
-	Route::get('/buscar', [
-		'uses' => 'PostController@buscar',
-		'as' => 'buscar.post'
-	]);
+	// Route::get('/buscar', [
+	// 	'uses' => 'PostController@buscar',
+	// 	'as' => 'buscar.post'
+	// ]);
 
 
 	Route::get('Zona/{name}/{id}', [
@@ -187,6 +187,16 @@ Route::group(['prefix'=>'/Admin', 'middleware'=>['admin' , 'verified']], functio
 		'as' => 'eliminar.usuario'
 	]);
 
+	Route::get('/buscar-users', [
+		'uses' => 'AdminController@buscarUser',
+		'as' => 'buscar.user.admin'
+	]);
+
+	Route::Get('/actividad/{slug}', [
+		'uses' => 'AdminController@verActividad',
+		'as' => 'ver.actividad'
+	]);
+
 	//publicaciones
 
 	Route::get('/Publicaciones', [
@@ -199,8 +209,8 @@ Route::group(['prefix'=>'/Admin', 'middleware'=>['admin' , 'verified']], functio
 		'as' => 'eliminar.post'
 	]);
 
-	Route::get('/buscar', [
-		'uses' => 'AdminController@buscar',
+	Route::get('/buscar-posts', [
+		'uses' => 'AdminController@buscarPost',
 		'as' => 'buscar.post.admin'
 	]);
 

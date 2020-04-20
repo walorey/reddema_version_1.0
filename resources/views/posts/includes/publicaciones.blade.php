@@ -95,4 +95,4 @@
 			@include('posts.includes.reportarPublicacion')
 			@endforeach
 
-			{!! $posts->appends(Request::only(['category', 'animal_type', 'zone']))->render()!!}
+			{!! $posts->appends(Request::only(['category', 'animal_type', 'zone', 'busqueda']))->render()!!}

@@ -131,6 +131,17 @@ class AdminController extends Controller
 
     }
 
+    public function verActividad($slug)
+    {
+        $usuario = User::where('slug' , '=' , $slug)->firstOrFail();
+        $posts = Post::where('user_id', '=', $usuario->id)->orderBy('id', 'DESC')->paginate(10);
+        $comentarios = Commentary::where('user_id', '=', $usuario->id)->orderBy('id', 'DESC')->paginate(10);
+        $rHechos = Report::where('accuser_id', '=', $usuario->id)->orderBy('id', 'DESC')->paginate(10);
+        $rRecibidos = Report::where('accused_id', '=', $usuario->id)->orderBy('id', 'DESC')->paginate(10);
+
+        return view('admin.actividadUsuario')->with('usuario', $usuario)->with('posts', $posts)->with('comentarios', $comentarios)->with('rHechos', $rHechos)->with('rRecibidos', $rRecibidos);
+    }
+
     public function publicacionesIndex()
     {
         $posts = Post::orderBy('id', 'DESC')->paginate(10);
@@ -162,13 +173,26 @@ class AdminController extends Controller
         return redirect()->route('admin.posts.index')->with('amarillo', 'Se ha eliminado la publicación: '.$post->title);
     }
 
-    public function buscar(Request $request)
+    public function buscarPost(Request $request)
     {
         $title = $request->busqueda;
         $description = $request->busqueda;
+        $busqueda = $request->busqueda;
 
-        $posts = Post::orderBy('id', 'DESC')->title($title)->description($description)->paginate(10);
+        $posts = Post::orderBy('id', 'DESC')->title($title)->description($description)->paginate(1);
 
-        return view('admin.publicaciones')->with('posts', $posts);
+        return view('admin.publicaciones')->with('posts', $posts)->with('title', $title)->with('description', $description);
+    }
+
+    public function buscarUser(Request $request)
+    {
+        $name = $request->busqueda;
+        $lastname = $request->busqueda;
+        $email = $request->busqueda;
+        $busqueda = $request->busqueda;
+
+        $usuarios = User::orderBy('id', 'DESC')->name($name)->lastName($lastname)->email($email)->paginate(1);
+
+        return view('admin.usuarios')->with('usuarios', $usuarios)->with('name', $name)->with('lastname', $lastname)->with('email', $email)->with('busqueda', $busqueda);
     }
 }

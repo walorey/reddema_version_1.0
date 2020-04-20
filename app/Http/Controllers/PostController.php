@@ -170,7 +170,7 @@ class PostController extends Controller
         $animal_type = $request->animal_type;
         $zone = $request->zone;
 
-        $posts = Post::orderBy('id', 'DESC')->title($busqueda)->description($busqueda)->category($category)->animaltype($animal_type)->zone($zone)->paginate(10);
+        $posts = Post::orderBy('id', 'DESC')->title($busqueda)->description($busqueda)->category($category)->animaltype($animal_type)->zone($zone)->paginate(1);
 
         $zones = Zone::all();
 
@@ -178,15 +178,15 @@ class PostController extends Controller
 
     }
 
-    public function buscar(Request $request)
-    {
-        $busqueda = $request->busqueda;
-        $zones = Zone::all();
+    // public function buscar(Request $request)
+    // {
+    //     $busqueda = $request->busqueda;
+    //     $zones = Zone::all();
 
-        $posts = Post::orderBy('id', 'DESC')->title($busqueda)->description($busqueda)->paginate(10);
+    //     $posts = Post::orderBy('id', 'DESC')->title($busqueda)->description($busqueda)->paginate(1);
 
-        return view('posts.index')->with('posts', $posts)->with('zones', $zones)->with('busqueda', $busqueda);
-    }
+    //     return view('posts.index')->with('posts', $posts)->with('zones', $zones)->with('busqueda', $busqueda);
+    // }
 
     public function verZona($name, $id)
     {

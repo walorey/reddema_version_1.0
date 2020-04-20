@@ -15,9 +15,14 @@
 
               <nav class="navbar navbar-light bg-light">
                 <h6 class="m-0 font-weight-bold text-primary">Lista de usuarios</h6>
-                <form class="form-inline">
-                  <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search">
-                  <button class="btn btn-primary" type="button">
+                <form class="form-inline" action="{{route('buscar.user.admin')}}" method="get">
+                  @csrf
+                  @if(isset($busqueda))
+                  <input name="busqueda" value="{{$busqueda}}" class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search">
+                  @else
+                  <input name="busqueda"  class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search">
+                  @endif
+                  <button class="btn btn-primary" type="submit">
                         <i class="fas fa-search fa-sm"></i>
                   </button>
                 </form>
@@ -50,7 +55,7 @@
                       <td><span class="badge badge-primary">{{$usuario->type}}</span></td>
                       @endif
                       <td>
-                      	<a href="#" class="btn btn-warning btn-circle" title="Ver actividad">
+                      	<a href="{{route('ver.actividad', $usuario->slug)}}" class="btn btn-warning btn-circle" title="Ver actividad" target="_blank">
 		                      <i class="fas fa-eye"></i>
 		                    </a>
                       	<a href="#" class="btn btn-danger btn-circle" title="Eliminar usuario" data-toggle="modal" data-target="#eliminarUsuarioModal{{$usuario->id}}">
@@ -62,7 +67,7 @@
                   	@endforeach
                   </tbody>
                 </table>
-                {!! $usuarios->render()!!}
+                {!! $usuarios->appends(Request::only(['name', 'lastname', 'email', 'busqueda']))->render()!!}
               </div>
             </div>
           </div>
