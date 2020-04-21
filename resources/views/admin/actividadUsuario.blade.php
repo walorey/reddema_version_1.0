@@ -77,6 +77,7 @@
                   @if($rHechos->count()<1)
                   <h4>No hizo reportes</h4>
                   @else
+                  <h4>Hechos</h4>
                   @foreach($rHechos as $reporteH)
                   <div class="card bg-warning text-white shadow">
                     <div class="card-body">
@@ -93,6 +94,7 @@
                   @if($rRecibidos->count()<1)
                   <h4>No hizo reportes</h4>
                   @else
+                  <h4>Recibidos</h4>
                   @foreach($rRecibidos as $reporteR)
                   <div class="card bg-danger text-white shadow">
                     <div class="card-body">

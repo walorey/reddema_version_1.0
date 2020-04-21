@@ -13,6 +13,7 @@ use App\Http\Requests\DeleteAsAdminRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Notifications\UserDeleted;
 use App\Notifications\PostDeleted;
+use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
@@ -194,5 +195,23 @@ class AdminController extends Controller
         $usuarios = User::orderBy('id', 'DESC')->name($name)->lastName($lastname)->email($email)->paginate(1);
 
         return view('admin.usuarios')->with('usuarios', $usuarios)->with('name', $name)->with('lastname', $lastname)->with('email', $email)->with('busqueda', $busqueda);
+    }
+
+    public function verImagenes()
+    {
+        $imagenes = Image::orderBy('id', 'desc')->get();
+
+        // dd($imagenes);
+
+        return view('admin.imagenes')->with('imagenes', $imagenes);
+    }
+
+    public function eliminarImagen($id)
+    {
+        $imagen = Image::find($id);
+        Storage::disk('public')->delete($imagen->ruta);
+        $imagen->delete();
+
+        dd('borrado');
     }
 }

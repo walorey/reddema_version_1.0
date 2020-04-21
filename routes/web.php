@@ -219,5 +219,17 @@ Route::group(['prefix'=>'/Admin', 'middleware'=>['admin' , 'verified']], functio
 		'as' => 'reports.index'
 	]);
 
+	//imagenes
+
+	Route::get('Imagenes', [
+		'uses' => 'AdminController@verImagenes',
+		'as' => 'ver.imagenes'
+	]);
+
+	Route::post('/Imagen/Borrar/{id}', [
+		'uses' => 'AdminController@eliminarImagen',
+		'as' => 'eliminar.imagen'
+	]);
+
 
 });
