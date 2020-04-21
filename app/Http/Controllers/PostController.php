@@ -82,9 +82,6 @@ class PostController extends Controller
                 $nuevaImagen->post_id = $post->id;
                 $nuevaImagen->save();
             }
-
-            //no puedo guardar multiples imagenes, una si.
-
         }
 
 
@@ -144,6 +141,17 @@ class PostController extends Controller
         $post->zone_id = $request->zone;
         $post->description = $request->description;
         $post->save();
+
+        if($request->hasFile('images')){
+
+            foreach ($request->file('images') as $imagen) {
+                $ruta = Storage::disk('public')->put('img/publicaciones', $imagen);
+                $nuevaImagen = new Image;
+                $nuevaImagen->ruta = $ruta;
+                $nuevaImagen->post_id = $post->id;
+                $nuevaImagen->save();
+            }
+        }
 
 
         return redirect()->route('posts.show', $post->slug)->with('verde', 'Se ha actualizado su publicación');

@@ -7,7 +7,7 @@
 		<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
 			<h2>Editar publicación</h2>
 			@include('alertas')
-			<form method="post" action="{{route('posts.update', $post->id)}}">
+			<form method="post" action="{{route('posts.update', $post->id)}}" enctype="multipart/form-data">
 			  @csrf
 			  @method('PUT')
 			  <div class="form-group">
@@ -58,6 +58,10 @@
 				    	@endforeach
 			    	</optgroup>
 			    </select>
+			  </div>
+			  <div class="form-group">
+			    <label for="exampleFormControlFile1">Imagenes</label>
+			    <input type="file" name="images[]" multiple class="form-control-file" id="exampleFormControlFile1">
 			  </div>
 			  <div class="form-group">
 			    <label for="exampleFormControlTextarea1">Detalles</label>
