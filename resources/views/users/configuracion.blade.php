@@ -11,9 +11,9 @@
 
                     <h4>Cambiar email</h4>
                     <div class="form-group">
-						<label>Email: {{Auth::user()->email}}</label>
+						            <label>Email: {{Auth::user()->email}}</label>
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalEmail">Cambiar</button>
-					</div>
+					         </div>
 
                     <br>
 

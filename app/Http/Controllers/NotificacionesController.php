@@ -132,7 +132,19 @@ class NotificacionesController extends Controller
             return view('notifications.reporteResuelto')->with('notificacion', $notificacion);
         }
         else{
-            dd('no puedes ver esta notificacion');
+
+            return redirect()->route('home');
+        }
+    }
+
+    //mostrando que una imagen se elimino
+    public function imagenEliminada($id)
+    {
+        $notificacion = DatabaseNotification::find($id);
+        if ($notificacion->data['user']['id'] == Auth::user()->id) {
+            return view('notifications.imagenDeleted')->with('notificacion', $notificacion);
+        }
+        else{
             return redirect()->route('home');
         }
     }

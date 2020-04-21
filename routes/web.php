@@ -130,13 +130,19 @@ Route::group(['middleware' => ['auth','verified']], function(){
 	Route::delete('notificaciones/{id}', 'NotificacionesController@destroy')->name('notifications.destroy');
 
 
-	//Ruta para mostrar el mensaje de una notificacion de una eliminación
+	//Ruta para mostrar el mensaje de una notificacion de una post eliminado
 
 	Route::get('Notificaciones/Contenido-eliminado/{id}', [
 		'uses' => 'NotificacionesController@show',
 		'as' => 'notifications.show'
 	]);
 
+	//ruta para mostrar la eliminacion de una imagen
+
+	Route::get('Notificaciones/Imagen-eliminada/{id}', [
+		'uses' => 'NotificacionesController@imagenEliminada',
+		'as' => 'imagenEliminada.show'
+	]);
 
 	// Reportes
 

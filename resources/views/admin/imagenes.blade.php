@@ -3,6 +3,7 @@
 <div class="container">
 	<div class="row justify-content-center">
 		<div class="col-md-8">
+			@include('alertas')
 			<h1>Imagenes</h1>
 			<div id="carouselExampleInterval" class="carousel slide" data-ride="carousel">
 			  <div class="carousel-inner">

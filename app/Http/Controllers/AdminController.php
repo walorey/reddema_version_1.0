@@ -13,6 +13,7 @@ use App\Http\Requests\DeleteAsAdminRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Notifications\UserDeleted;
 use App\Notifications\PostDeleted;
+use App\Notifications\ImagenDeleted;
 use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
@@ -209,9 +210,14 @@ class AdminController extends Controller
     public function eliminarImagen($id)
     {
         $imagen = Image::find($id);
+        $usuario = $imagen->post->user;
+        $post = $imagen->post;
+        $usuario->notify(new ImagenDeleted($post));
         Storage::disk('public')->delete($imagen->ruta);
         $imagen->delete();
 
-        dd('borrado');
+        return redirect()->route('ver.imagenes')->with('amarillo', 'Se elimino la imagen');
+
+
     }
 }
