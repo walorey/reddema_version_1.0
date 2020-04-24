@@ -144,6 +144,13 @@ Route::group(['middleware' => ['auth','verified']], function(){
 		'as' => 'imagenEliminada.show'
 	]);
 
+	//Ruta para mostrar un comentario eliminado
+
+	Route::get('Notificaciones/Comentario-eliminado/{id}', [
+		'uses' => 'NotificacionesController@comentarioEliminado',
+		'as' => 'comentarioEliminado.show'
+	]);
+
 	// Reportes
 
 	Route::resource('reports', 'ReportController');
@@ -237,5 +244,13 @@ Route::group(['prefix'=>'/Admin', 'middleware'=>['admin' , 'verified']], functio
 		'as' => 'eliminar.imagen'
 	]);
 
+	Route::get('/Comentarios', [
+		'uses' => 'AdminController@verComentarios',
+		'as' => 'ver.comentarios'
+	]);
 
+	Route::post('/Comentario/Borrar/{id}', [
+		'uses' => 'AdminController@eliminarComentario',
+		'as' => 'eliminar.comentario.admin'
+	]);
 });

@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Notifications\UserDeleted;
 use App\Notifications\PostDeleted;
 use App\Notifications\ImagenDeleted;
+use App\Notifications\CommentaryDeleted;
 use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
@@ -217,7 +218,23 @@ class AdminController extends Controller
         $imagen->delete();
 
         return redirect()->route('ver.imagenes')->with('amarillo', 'Se elimino la imagen');
+    }
 
+    public function verComentarios()
+    {
+        $comentarios = Commentary::orderBy('id', 'DESC')->paginate(20);
 
+        return view('admin.comentarios')->with('comentarios', $comentarios);
+    }
+
+    public function eliminarComentario($id)
+    {
+        $comentario = Commentary::find($id);
+        $usuario = $comentario->user;
+        $post = $comentario->post;
+        $usuario->notify(new CommentaryDeleted($post, $usuario));
+        $comentario->delete();
+
+        return redirect()->route('ver.comentarios')->with('amarillo', 'Comentario eliminado');
     }
 }

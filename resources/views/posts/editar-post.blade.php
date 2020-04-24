@@ -60,7 +60,7 @@
 			    </select>
 			  </div>
 			  <div class="form-group">
-			    <label for="exampleFormControlFile1">Imagenes</label>
+			    <label for="exampleFormControlFile1">Agregar imagenes</label>
 			    <input type="file" name="images[]" multiple class="form-control-file" id="exampleFormControlFile1">
 			  </div>
 			  <div class="form-group">

@@ -82,7 +82,7 @@
 
             <!-- Comentarios card -->
             <div class="col-xl-3 col-md-6 mb-4">
-            	<a href="" class="link-limpio">
+            	<a href="{{route('ver.comentarios')}}" class="link-limpio">
 		            <div class="card border-left-warning shadow h-100 py-2">
 		                <div class="card-body">
 		                  <div class="row no-gutters align-items-center">
