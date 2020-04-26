@@ -59,6 +59,25 @@ Route::group(['middleware' => ['auth', 'verified']], function(){
 		'as' => 'reports.perfil.make'
 	]);
 
+	//mensajes
+
+	Route::get('buzon', function(){
+		return view('users.buzon');
+	});
+
+	Route::get('buzon/mensaje/{slug}',[
+		'uses' => 'ConversationController@show',
+		'as' => 'verConversacion'
+	]);
+
+	Route::resource('conversations', 'ConversationController');
+
+	Route::post('newConversation/{id}', [
+		'uses' => 'ConversationController@store',
+		'as' => 'newConversation'
+	]);
+
+	Route::resource('messages', 'MessageController');
 });
 
 Route::group(['middleware' => ['auth','verified']], function(){

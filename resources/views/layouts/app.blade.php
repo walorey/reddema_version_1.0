@@ -55,12 +55,15 @@
                                 </li>
                             @endif
                         @else
-                            {{-- <notifications></notifications> --}}
-
-
 
                             <li class="nav-item dropdown">
-                                <a class="nav-link nombre-usuario" href="{{ route('notifications.index')}}" v-pre>Notificaciones
+                                <a href="#" class="nav-link blanco-nav">
+                                    Mensajes <i class="far fa-envelope"></i>
+                                </a>
+                            </li>
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link blanco-nav" href="{{ route('notifications.index')}}" v-pre>Notificaciones
 
                                     @if ($count = Auth::user()->unreadNotifications->count())
 
@@ -78,7 +81,7 @@
                             </li>
 
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle nombre-usuario" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle blanco-nav" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 

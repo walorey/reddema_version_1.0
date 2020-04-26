@@ -32,7 +32,7 @@
 					      <div class="card-body">
 					        <p class="h2 text-center">{{$usuario->name.' '.$usuario->lastname}}</p>
 					        <p>{{$usuario->descripcion}}</p>
-
+					        <button type="button" class="btn btn-secondary"  data-toggle="modal" data-target="#modalMensaje">Mensaje <i class="fas fa-envelope"></i></button>
 					      </div>
 					    </div>
 
@@ -158,7 +158,7 @@
 
 
 
-	@if(Auth::user()->id !== $usuario->id)
+	||||@if(Auth::user()->id !== $usuario->id)
 		{{-- reportar perfil --}}
 
 		<div class="modal fade" id="modalReport" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -191,5 +191,39 @@
 		  </div>
 		</div>
 		@endif
+
+		{{-- modal enviar mensaje --}}
+
+		<!-- Modal -->
+		<div class="modal fade" id="modalMensaje" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="exampleModalLabel">Mensaje nuevo</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+		        <form id="formMensaje" method="post" action="{{route('newConversation', $usuario->id)}}">
+		          @csrf
+				  <div class="form-group">
+				    <label for="exampleFormControlInput1">Asunto</label>
+				    <input type="text" name="subject" class="form-control">
+				  </div>
+				  <div class="form-group">
+				    <label for="exampleFormControlTextarea1">Mensaje</label>
+				    <textarea class="form-control" name="body" rows="3"></textarea>
+				  </div>
+				</form>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+		        <button type="submit" class="btn btn-secondary" form="formMensaje">Enviar</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+
 	</div>
 @endsection

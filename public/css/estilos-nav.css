@@ -6,7 +6,7 @@
 	background-color: #607D8B;
 }
 
-.nombre-usuario{
+.blanco-nav{
 	color:#F5F5F5 !important;
 }
 
@@ -56,6 +56,12 @@
 .imagen-carrusel{
   width: 500px;
   height: 500px;
+}
+
+.div-conversacion{
+  height:400px;
+  width: auto;
+  max-width: 1098px;
 }
 
 /*estilos responsivos*/
