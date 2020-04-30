@@ -43,7 +43,7 @@ class newConversation extends Notification
     {
         return (new MailMessage)
                     ->subject('Nueva conversación')
-                    ->line($this->remitente->name.' '.$this->remitente->lastname.' ha iniciado una conversación');
+                    ->line($this->remitente->name.' '.$this->remitente->lastname.' ha iniciado una conversación')
                     ->line('"'.$this->conversacion->subject.'"')
                     ->action('Ver conversación', route('verConversacion', $this->conversacion->slug))
                     ->line('Gracias por usar Reddema!');
@@ -58,7 +58,9 @@ class newConversation extends Notification
     public function toArray($notifiable)
     {
         return [
-            //
+            // 'subject' => $this->conversacion->subject,
+            // 'link' => route('verConversacion', $this->conversacion->slug),
+            //vos tenes que mostrar en el buzon los mensajes que enviaste y los que recibiste, como vas a mostrar por notificacion en tu buzon algo que enviaste vos?
         ];
     }
 }

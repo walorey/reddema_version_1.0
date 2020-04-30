@@ -65,19 +65,28 @@ Route::group(['middleware' => ['auth', 'verified']], function(){
 		return view('users.buzon');
 	});
 
-	Route::get('buzon/mensaje/{slug}',[
-		'uses' => 'ConversationController@show',
-		'as' => 'verConversacion'
+	//ver conversacion
+
+	// Route::get('buzon/mensaje/{slug}',[
+	// 	'uses' => 'ConversationController@show',
+	// 	'as' => 'verConversacion'
+	// ]);
+
+	// //enviar un mensaje dentro de la conversacion
+	// Route::post('buzon/nuevoMensaje/{id}', [
+	// 	'uses' => 'MessageController@store',
+	// 	'as' => 'newMessage'
+	// ]);
+
+	// Route::resource('conversations', 'ConversationController');
+
+	//generar nueva conversacion en perfil de usuario
+	Route::post('newMessage/{id}', [
+		'uses' => 'MessageController@store',
+		'as' => 'newMessage'
 	]);
 
-	Route::resource('conversations', 'ConversationController');
-
-	Route::post('newConversation/{id}', [
-		'uses' => 'ConversationController@store',
-		'as' => 'newConversation'
-	]);
-
-	Route::resource('messages', 'MessageController');
+	// Route::resource('messages', 'MessageController');
 });
 
 Route::group(['middleware' => ['auth','verified']], function(){

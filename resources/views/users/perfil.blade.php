@@ -32,7 +32,9 @@
 					      <div class="card-body">
 					        <p class="h2 text-center">{{$usuario->name.' '.$usuario->lastname}}</p>
 					        <p>{{$usuario->descripcion}}</p>
+					        @if(Auth::user()->id != $usuario->id)
 					        <button type="button" class="btn btn-secondary"  data-toggle="modal" data-target="#modalMensaje">Mensaje <i class="fas fa-envelope"></i></button>
+					        @endif
 					      </div>
 					    </div>
 
@@ -158,7 +160,7 @@
 
 
 
-	||||@if(Auth::user()->id !== $usuario->id)
+	@if(Auth::user()->id !== $usuario->id)
 		{{-- reportar perfil --}}
 
 		<div class="modal fade" id="modalReport" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -205,12 +207,8 @@
 		        </button>
 		      </div>
 		      <div class="modal-body">
-		        <form id="formMensaje" method="post" action="{{route('newConversation', $usuario->id)}}">
+		        <form id="formMensaje" method="post" action="{{route('newMessage', $usuario->id)}}">
 		          @csrf
-				  <div class="form-group">
-				    <label for="exampleFormControlInput1">Asunto</label>
-				    <input type="text" name="subject" class="form-control">
-				  </div>
 				  <div class="form-group">
 				    <label for="exampleFormControlTextarea1">Mensaje</label>
 				    <textarea class="form-control" name="body" rows="3"></textarea>

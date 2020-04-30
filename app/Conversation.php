@@ -4,25 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class conversation extends Model
+class Conversation extends Model
 {
-
-
-	protected $table = "conversations";
-
+    protected $table = 'conversations';
 
     public function messages()
     {
-        return $this->hasMany('App\messages');
+    	return $this->hasMany('App\Message');
     }
 
-    public function remitente()
-    {
-        return $this->belongsTo('App\User');
-    }
-
-    public function destinatario()
-    {
-        return $this->belongsTo('App\User');
-    }
 }
