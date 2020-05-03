@@ -57,8 +57,7 @@ class MessageController extends Controller
             $mensaje->body = $request->body;
             $mensaje->save();
 
-
-            dd('conversacion nueva y mensaje enviado');
+            return redirect()->route('mostrar.perfil', $destinatario->slug)->with('verde', 'Conversación iniciada!');
         }
         else
         {
@@ -69,9 +68,8 @@ class MessageController extends Controller
             $mensaje->recipient_id = $id;
             $mensaje->save();
 
-            dd('mensaje enviado');
+            return redirect()->route('mostrar.perfil', $destinatario->slug)->with('verde', 'Mensaje enviado!');
         }
-
 
     }
 
@@ -119,4 +117,42 @@ class MessageController extends Controller
     {
         //
     }
+
+    public function verBuzon()
+    {
+
+        //aca pido todos los mensajes en donde yo envio mensajes, con la fecha de creacion para ordenarlo despues
+        $recipients = Message::Select('recipient_id', 'created_at')->distinct()->where('sender_id', Auth::user()->id)->get()->toArray();
+
+        //aca pido todos los mensajes en los que yo recibo mensajes, con la fecha de creacion para ordenarlo despues
+        $senders = Message::Select('sender_id' , 'created_at')->distinct()->where('recipient_id', Auth::user()->id)->get()->toArray();
+
+
+        //aca hago un merge, junto los array en uno
+        $merge = array_merge($recipients, $senders);
+
+        //aca hago de ese array una coleccion para poder ordenarlos aunque tengan atributos de distinto nombre
+        $collection = collect($merge);
+
+        // aca ordeno los mensajes por created_at de forma descendente, o sea ordeno los id de los usuarios con los que tuve interaccion mas reciente, aun estan repetidos
+        $mensajesOrdenados = $collection->sortByDesc('created_at');
+
+        // aca separo los id de la coleccion
+        $ids = $mensajesOrdenados->map(function($item){return $item['sender_id'] ?? $item['recipient_id'];})->toArray();
+
+        //aca fijo el ordenamiento de esos id
+        $ids_ordenados = implode(',', $ids);
+
+        //pido buscar usuarios, como es una cadena uso whereIn, pero le digo que conserve el orden y con where in no repite usuarios
+        $users = User::whereIn('id', $ids)->orderByRaw("FIELD(id,$ids_ordenados)")->get();
+
+
+        return view('users.buzon')->with('users', $users);
+
+    }
+
+    // public function nuevoMensaje(Request $request, )
+    // {
+
+    // }
 }

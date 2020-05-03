@@ -86,7 +86,10 @@ Route::group(['middleware' => ['auth', 'verified']], function(){
 		'as' => 'newMessage'
 	]);
 
-	// Route::resource('messages', 'MessageController');
+	Route::get('buzon', [
+		'uses' => 'MessageController@verBuzon',
+		'as' => 'ver.buzon'
+	]);
 });
 
 Route::group(['middleware' => ['auth','verified']], function(){

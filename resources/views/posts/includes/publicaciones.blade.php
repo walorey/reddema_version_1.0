@@ -14,7 +14,7 @@
 			      	</a>
 				</span>
 				<span>|</span>
-				<span>{{$post->created_at}}</span>
+				<span>{{$post->created_at->diffForHumans()}}</span>
 			  	@if($post->user->id == Auth::user()->id)
 				<span class="float-right">
 			  	  <div class="dropdown no-arrow">
