@@ -3,15 +3,11 @@
 <div class="container">
 	@include('alertas')
 	<h3>
-		@if(Auth::user()->id == $conversacion->remitente_id)
-		Conversación con:<a href="{{route('mostrar.perfil', $conversacion->destinatario->slug)}}">{{$conversacion->destinatario->name.' '.$conversacion->destinatario->lastname}}</a></span>
-		@else
-		Conversación con:<a href="{{route('mostrar.perfil', $conversacion->remitente->slug)}}">{{$conversacion->remitente->name.' '.$conversacion->remitente->lastname}}</a></span>
-		@endif
+
 	</h3>
 	<div class="card">
 	  <div class="card-header">
-	    {{$conversacion->subject}}
+	  	<a href="{{route('mostrar.perfil', $usuario->slug)}}">{{$usuario->name. ' '.$usuario->lastname}}</a>
 	  </div>
 	  <div class="card-body">
 	  	<div class="overflow-auto div-conversacion">
@@ -43,7 +39,7 @@
 	<div class="card border-primary mb-3">
 	  <div class="card-header">Mensaje</div>
 	  <div class="card-body text-primary">
-	  	<form method="post" action="{{route('newMessage', $conversacion->id)}}" id="formEnviarMensaje">
+	  	<form method="post" action="{{route('newMessage', $usuario->id)}}" id="formEnviarMensaje">
 	  	  @csrf
 		  <div class="form-group">
 		    <textarea class="form-control" name="body" rows="3"></textarea>

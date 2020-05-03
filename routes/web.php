@@ -67,10 +67,12 @@ Route::group(['middleware' => ['auth', 'verified']], function(){
 
 	//ver conversacion
 
-	// Route::get('buzon/mensaje/{slug}',[
-	// 	'uses' => 'ConversationController@show',
-	// 	'as' => 'verConversacion'
-	// ]);
+
+
+	Route::get('buzon/mensaje/{slug}',[
+		'uses' => 'MessageController@show',
+		'as' => 'verConversacion'
+	]);
 
 	// //enviar un mensaje dentro de la conversacion
 	// Route::post('buzon/nuevoMensaje/{id}', [

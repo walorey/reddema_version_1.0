@@ -40,37 +40,14 @@ class MessageController extends Controller
     //enviar mensaje desde perfil
     public function store(Request $request, $id)
     {
-        $mensajes = Message::where('sender_id', '=' , Auth::user()->id)->where('recipient_id', '=', $id)->orwhere('recipient_id', '=', Auth::user()->id)->where('sender_id', '=', $id)->get();
-
-        $remitente = Auth::user();
-        $destinatario = User::find($id);
-        $slugConversacion = $remitente->name.$remitente->lastname.'-'.$destinatario->name.$destinatario->lastname;
-
-        if ($mensajes->count() == 0) {
-            $conversacion = new Conversation();
-            $conversacion->slug = time().'-'.Str_slug($slugConversacion);
-            $conversacion->save();
+            $destinatario = User::find($id);
             $mensaje = new Message();
-            $mensaje->conversation_id = $conversacion->id;
-            $mensaje->sender_id = Auth::user()->id;
-            $mensaje->recipient_id = $id;
-            $mensaje->body = $request->body;
-            $mensaje->save();
-
-            return redirect()->route('mostrar.perfil', $destinatario->slug)->with('verde', 'Conversación iniciada!');
-        }
-        else
-        {
-            $mensaje = new Message();
-            $mensaje->conversation_id = $mensajes->first()->conversation_id;
             $mensaje->body = $request->body;
             $mensaje->sender_id = Auth::user()->id;
             $mensaje->recipient_id = $id;
             $mensaje->save();
 
             return redirect()->route('mostrar.perfil', $destinatario->slug)->with('verde', 'Mensaje enviado!');
-        }
-
     }
 
     /**
@@ -79,9 +56,13 @@ class MessageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        //
+        $usuario = User::where('slug', $slug)->firstOrFail();
+
+        $mensajes = Message::where('sender_id', $usuario->id)->where('recipient_id', Auth::user()->id)->orWhere('recipient_id', $usuario->id)->where('sender_id', Auth::user()->id)->get();
+
+        return view('users.conversacion')->with('usuario', $usuario)->with('mensajes', $mensajes);
     }
 
     /**
@@ -131,23 +112,32 @@ class MessageController extends Controller
         //aca hago un merge, junto los array en uno
         $merge = array_merge($recipients, $senders);
 
-        //aca hago de ese array una coleccion para poder ordenarlos aunque tengan atributos de distinto nombre
-        $collection = collect($merge);
+        if (count($merge)>0) {
+            //aca hago de ese array una coleccion para poder ordenarlos aunque tengan atributos de distinto nombre
+            $collection = collect($merge);
 
-        // aca ordeno los mensajes por created_at de forma descendente, o sea ordeno los id de los usuarios con los que tuve interaccion mas reciente, aun estan repetidos
-        $mensajesOrdenados = $collection->sortByDesc('created_at');
+            // aca ordeno los mensajes por created_at de forma descendente, o sea ordeno los id de los usuarios con los que tuve interaccion mas reciente, aun estan repetidos
+            $mensajesOrdenados = $collection->sortByDesc('created_at');
 
-        // aca separo los id de la coleccion
-        $ids = $mensajesOrdenados->map(function($item){return $item['sender_id'] ?? $item['recipient_id'];})->toArray();
+            // aca separo los id de la coleccion
+            $ids = $mensajesOrdenados->map(function($item){return $item['sender_id'] ?? $item['recipient_id'];})->toArray();
 
-        //aca fijo el ordenamiento de esos id
-        $ids_ordenados = implode(',', $ids);
+            //aca fijo el ordenamiento de esos id
+            $ids_ordenados = implode(',', $ids);
 
-        //pido buscar usuarios, como es una cadena uso whereIn, pero le digo que conserve el orden y con where in no repite usuarios
-        $users = User::whereIn('id', $ids)->orderByRaw("FIELD(id,$ids_ordenados)")->get();
+            //pido buscar usuarios, como es una cadena uso whereIn, pero le digo que conserve el orden y con where in no repite usuarios
+            $users = User::whereIn('id', $ids)->orderByRaw("FIELD(id,$ids_ordenados)")->get();
 
 
-        return view('users.buzon')->with('users', $users);
+            return view('users.buzon')->with('users', $users);
+        }
+        else{
+            $aviso = "No hay mensajes";
+            return view('users.buzon')->with('aviso', $aviso);
+        }
+
+
+
 
     }
 

@@ -56,16 +56,16 @@
                             @endif
                         @else
 
-{{--                             <li class="nav-item dropdown">
-                                <a href="{{route('conversations.index')}}" class="nav-link blanco-nav">
+                            <li class="nav-item dropdown">
+                                <a href="{{route('ver.buzon')}}" class="nav-link blanco-nav">
                                     Mensajes <i class="far fa-envelope"></i>
-                                    @if ($count = Auth::user()->unreadNotifications->where('type', '=', 'App\Notifications\newConversation')->count())
+  {{--                                   @if ($count = Auth::user()->unreadNotifications->where('type', '=', 'App\Notifications\newConversation')->count())
 
                                         <span class="badge badge-light">{{$count}}</span>
 
-                                    @endif
+                                    @endif --}}
                                 </a>
-                            </li> --}}
+                            </li>
 
                             <li class="nav-item dropdown">
                                 <a class="nav-link blanco-nav" href="{{ route('notifications.index')}}" v-pre>Notificaciones

@@ -8,11 +8,6 @@ class Message extends Model
 {
     protected $table = 'messages';
 
-    public function conversation()
-    {
-    	return $this->belongsTo('App\User');
-    }
-
     public function sender()
     {
     	return $this->belongsTo('App\User', 'sender_id');
