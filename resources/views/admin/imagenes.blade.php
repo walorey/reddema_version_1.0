@@ -36,7 +36,7 @@
 					        	<form action="{{route('eliminar.imagen', $imagen->id)}}" method="post">
 					        		@csrf
 
-					        		<button type="submit" class="btn btn-danger">Eliminar</button>
+					        		<button type="submit"  onclick="return confirm('Estas seguro que deseas eliminarlo?')" class="btn btn-danger">Eliminar</button>
 					        	</form>
 					        </p>
 					      </div>

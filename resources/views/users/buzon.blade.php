@@ -17,14 +17,26 @@
 	  <h3>{{$aviso}}</h3>
 	  @else
 		  @foreach($users as $user)
+		  @if($user->mensajesNoLeidosConEsteUsuario()->count()>0)
+		  <a href="{{route('verConversacion', $user->slug)}}" class="list-group-item list-group-item-action active">
+		    <div class="d-flex w-100 justify-content-between">
+		      <h5 class="mb-1">{{$user->name.' '.$user->lastname}}</h5>
+		      <small>{{$user->ultimoMensajeConmigo()->created_at->diffForHumans()}}</small>
+		    </div>
+		    <p class="mb-1">{{$user->ultimoMensajeConmigo()->body}}</p>
+		    <small>{{ $user->mensajesNoLeidosConEsteUsuario()->count().' mensajes sin leer'}}</small>
+		  </a>
+		  @else
 		  <a href="{{route('verConversacion', $user->slug)}}" class="list-group-item list-group-item-action">
 		    <div class="d-flex w-100 justify-content-between">
 		      <h5 class="mb-1">{{$user->name.' '.$user->lastname}}</h5>
 		      <small class="text-muted">{{$user->ultimoMensajeConmigo()->created_at->diffForHumans()}}</small>
 		    </div>
 		    <p class="mb-1">{{$user->ultimoMensajeConmigo()->body}}</p>
-		    <small class="text-muted">Donec id elit non mi porta.</small>
+		    {{-- <small class="text-muted">Donec id elit non mi porta.</small> --}}
 		  </a>
+		  @endif
+		  <hr style="margin-top: 0.5px;">
 		  @endforeach
 	  @endif
 	</div>

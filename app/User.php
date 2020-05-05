@@ -94,4 +94,39 @@ class User extends Authenticatable implements MustVerifyEmail
             return $query->orWhere('email','LIKE', "%$email%");
         }
     }
+
+    //funcion para saber si el usuario autenticado tiene mensajes sin leer de este usuario
+    public function mensajesNoLeidosConEsteUsuario()
+    {
+        $noLeidas =  Auth::user()->unreadNotifications;
+        $mensajesNoLeidos = $noLeidas->filter(function($noti, $key){
+            return $noti->type == 'App\Notifications\newMessage';
+        });
+        $mensajesNoLeidosDeEsteUsuario = $mensajesNoLeidos->filter(function($mensaje, $key){
+            return $mensaje->data['remitente']['id'] == $this->id;
+        });
+
+        return $mensajesNoLeidosDeEsteUsuario;
+    }
+
+    public function mensajesSinLeer()
+    {
+        $noLeidas =  Auth::user()->unreadNotifications;
+        $mensajesNoLeidos = $noLeidas->filter(function($noti, $key){
+            return $noti->type == 'App\Notifications\newMessage';
+        });
+
+        return $mensajesNoLeidos;
+    }
+
+    public function notificacionesNoLeidas()
+    {
+        $todasLasNoLeidas=  Auth::user()->unreadNotifications;
+        $notificacionesNoLeidas = $todasLasNoLeidas->filter(function($noti, $key){
+            return $noti->type != 'App\Notifications\newMessage';
+        });
+
+        return $notificacionesNoLeidas;
+    }
+
 }

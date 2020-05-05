@@ -7,6 +7,8 @@ use App\Message;
 use App\Conversation;
 use App\User;
 use Illuminate\Support\Facades\Auth;
+use App\Notifications\newMessage;
+use Illuminate\Notifications\Notifiable;
 
 class MessageController extends Controller
 {
@@ -47,6 +49,9 @@ class MessageController extends Controller
             $mensaje->recipient_id = $id;
             $mensaje->save();
 
+            $remitente = Auth::user();
+            $destinatario->notify(new newMessage($destinatario, $remitente, $mensaje->body));
+
             return redirect()->route('verConversacion', $destinatario->slug)->with('verde', 'Mensaje enviado!');
     }
 
@@ -59,6 +64,14 @@ class MessageController extends Controller
     public function show($slug)
     {
         $usuario = User::where('slug', $slug)->firstOrFail();
+
+        $mensajesSinLeer = $usuario->mensajesNoLeidosConEsteUsuario();
+
+        foreach ($mensajesSinLeer as $mensaje) {
+            $mensaje->markAsRead();
+        }
+
+
 
         $mensajes = Message::where('sender_id', $usuario->id)->where('recipient_id', Auth::user()->id)->orWhere('recipient_id', $usuario->id)->where('sender_id', Auth::user()->id)->get();
 

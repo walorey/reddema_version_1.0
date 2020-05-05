@@ -25,8 +25,8 @@ class NotificacionesController extends Controller
     public function index()
     {
         return view('notifications.index', [
-            'unreadNotifications' => auth()->user()->unreadNotifications,
-            'readNotifications' => auth()->user()->readNotifications
+            'unreadNotifications' => auth()->user()->unreadNotifications->where('type', '!=', 'App\Notifications\newMessage'),
+            'readNotifications' => auth()->user()->readNotifications->where('type', '!=', 'App\Notifications\newMessage')
         ]);
     }
 

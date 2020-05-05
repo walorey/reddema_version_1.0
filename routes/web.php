@@ -102,7 +102,25 @@ Route::group(['middleware' => ['auth', 'verified']], function(){
 		'as' => 'comentarioEliminado.show'
 	]);
 
+			//Ruta para mostrar el mensaje de una notificacion de una post eliminado
 
+	Route::get('Notificaciones/Contenido-eliminado/{id}', [
+		'uses' => 'NotificacionesController@show',
+		'as' => 'notifications.show'
+	]);
+
+		//ruta para mostrar la eliminacion de una imagen
+
+	Route::get('Notificaciones/Imagen-eliminada/{id}', [
+		'uses' => 'NotificacionesController@imagenEliminada',
+		'as' => 'imagenEliminada.show'
+	]);
+
+		//mostrar reporte resuelto
+	Route::get('Notificaciones/reporte-resuelto/{id}', [
+		'uses' => 'NotificacionesController@reporteResuelto',
+		'as' => 'notifications.reporteResuelto'
+	]);
 });
 
 Route::group(['middleware' => ['auth','verified']], function(){
@@ -177,23 +195,15 @@ Route::group(['middleware' => ['auth','verified']], function(){
 		'as' => 'notifications.index'
 	]);
 
+
+
+
 	Route::patch('notificaciones/{id}', 'NotificacionesController@read')->name('notifications.read');
 	Route::delete('notificaciones/{id}', 'NotificacionesController@destroy')->name('notifications.destroy');
 
 
-	//Ruta para mostrar el mensaje de una notificacion de una post eliminado
 
-	Route::post('Notificaciones/Contenido-eliminado/{id}', [
-		'uses' => 'NotificacionesController@show',
-		'as' => 'notifications.show'
-	]);
 
-	//ruta para mostrar la eliminacion de una imagen
-
-	Route::get('Notificaciones/Imagen-eliminada/{id}', [
-		'uses' => 'NotificacionesController@imagenEliminada',
-		'as' => 'imagenEliminada.show'
-	]);
 
 	//OJO CON ESTA LINEA QUE ME ESTA CAGANDO LAS VISTAS, ME DICE QUE NO SE ENCUENTRA, TUVE QUE CAMBIAR DE GRUPO DE RUTAS
 
@@ -211,11 +221,6 @@ Route::group(['middleware' => ['auth','verified']], function(){
 		'as' => 'reports.resolver'
 	]);
 
-	//mostrar reporte resuelto
-	Route::get('Notificaciones/reporte-resuelto/{id}', [
-		'uses' => 'NotificacionesController@reporteResuelto',
-		'as' => 'notifications.reporteResuelto'
-	]);
 
 	// Perfil
 

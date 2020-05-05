@@ -10,10 +10,10 @@
 				<ul class="list-group">
 					@foreach($unreadNotifications as $unreadNotification)
 						<li class="list-group-item">
-							<form class="float-right" method="post" action="{{ route('notifications.read', $unreadNotification->id)}}">
+							<form method="post" action="{{ route('notifications.read', $unreadNotification->id)}}">
 								    {{csrf_field()}}
     								{{ method_field('PATCH') }}
-								<button class="btn btn-secondary">{{ $unreadNotification->data['subject'] }}</button>
+								<button class="btn">{{ $unreadNotification->data['subject'] }}</button>
 							</form>
 						</li>
 					@endforeach

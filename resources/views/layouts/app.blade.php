@@ -59,18 +59,18 @@
                             <li class="nav-item dropdown">
                                 <a href="{{route('ver.buzon')}}" class="nav-link blanco-nav">
                                     Mensajes <i class="far fa-envelope"></i>
-  {{--                                   @if ($count = Auth::user()->unreadNotifications->where('type', '=', 'App\Notifications\newConversation')->count())
+                                    @if ($count = Auth::user()->mensajesSinLeer()->count())
 
                                         <span class="badge badge-light">{{$count}}</span>
 
-                                    @endif --}}
+                                    @endif
                                 </a>
                             </li>
 
                             <li class="nav-item dropdown">
                                 <a class="nav-link blanco-nav" href="{{ route('notifications.index')}}" v-pre>Notificaciones
 
-                                    @if ($count = Auth::user()->unreadNotifications->count())
+                                    @if ($count = Auth::user()->notificacionesNoLeidas()->count())
 
                                         <span class="badge badge-light">{{$count}}</span>
 

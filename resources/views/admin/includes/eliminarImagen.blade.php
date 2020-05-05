@@ -16,7 +16,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-danger" form="formEliminar{{$imagen->id}}">Eliminar</button>
+        <button type="submit" class="btn btn-danger"  onclick="return confirm('¿Seguro que quieres eliminar la imagen?')" form="formEliminar{{$imagen->id}}">Eliminar</button>
       </div>
     </div>
   </div>
