@@ -47,7 +47,7 @@ class MessageController extends Controller
             $mensaje->recipient_id = $id;
             $mensaje->save();
 
-            return redirect()->route('mostrar.perfil', $destinatario->slug)->with('verde', 'Mensaje enviado!');
+            return redirect()->route('verConversacion', $destinatario->slug)->with('verde', 'Mensaje enviado!');
     }
 
     /**

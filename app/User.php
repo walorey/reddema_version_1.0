@@ -5,6 +5,8 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Message;
+use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -51,6 +53,12 @@ class User extends Authenticatable implements MustVerifyEmail
     public function message()
     {
         return $this->hasMany('App\Message');
+    }
+
+    public function ultimoMensajeConmigo()
+    {
+        $mensajes = Message::where('sender_id', $this->id)->where('recipient_id', Auth::user()->id)->orWhere('recipient_id', $this->id)->where('sender_id', Auth::user()->id)->get();
+        return $mensajes->last();
     }
 
     public function reportsMade()

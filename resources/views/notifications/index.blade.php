@@ -10,13 +10,10 @@
 				<ul class="list-group">
 					@foreach($unreadNotifications as $unreadNotification)
 						<li class="list-group-item">
-							<a href="{{ $unreadNotification->data['link']}}">
-								{{ $unreadNotification->data['subject'] }}
-							</a>
 							<form class="float-right" method="post" action="{{ route('notifications.read', $unreadNotification->id)}}">
 								    {{csrf_field()}}
     								{{ method_field('PATCH') }}
-								<button class="btn btn-secondary"><i class="far fa-envelope-open"></i></button>
+								<button class="btn btn-secondary">{{ $unreadNotification->data['subject'] }}</button>
 							</form>
 						</li>
 					@endforeach
@@ -30,10 +27,10 @@
 							<a href="{{ $readNotification->data['link']}}">
 								{{ $readNotification->data['subject'] }}
 							</a>
-							<form class="float-right" method="post" action="{{ route('notifications.destroy', $readNotification->id)}}">
+							<form class="float-right" method="post" id="formEliminar" action="{{ route('notifications.destroy', $readNotification->id)}}">
 								    {{csrf_field()}}
     								{{ method_field('DELETE') }}
-								<button class="btn btn-danger">x</button>
+								<button class="btn btn-danger" form="formEliminar">x</button>
 							</form>
 						</li>
 					@endforeach

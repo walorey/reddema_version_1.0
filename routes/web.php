@@ -1,12 +1,14 @@
 <?php
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('posts.index');
 });
 
 Auth::routes();
 
 Auth::routes(['verify' => true]);
+
+
 
 //aca solo va a ir la configuracion por que la necesitas si tenes que cambiar un email y no esta verificado
 
@@ -92,6 +94,15 @@ Route::group(['middleware' => ['auth', 'verified']], function(){
 		'uses' => 'MessageController@verBuzon',
 		'as' => 'ver.buzon'
 	]);
+
+			//Ruta para mostrar un comentario eliminado
+
+	Route::get('Notificaciones/Comentario-eliminado/{id}', [
+		'uses' => 'NotificacionesController@comentarioEliminado',
+		'as' => 'comentarioEliminado.show'
+	]);
+
+
 });
 
 Route::group(['middleware' => ['auth','verified']], function(){
@@ -152,6 +163,13 @@ Route::group(['middleware' => ['auth','verified']], function(){
 
 	// Fin Publicaciones/post
 
+
+
+	Route::get('Notificaciones/{slug}/{id}', [
+		'uses' => 'NotificacionesController@verNuevoComentario',
+		'as' => 'ver.nuevo.comentario'
+	]);
+
 	//Marcar notificacion como leida
 
 	Route::get('Notificaciones', [
@@ -165,7 +183,7 @@ Route::group(['middleware' => ['auth','verified']], function(){
 
 	//Ruta para mostrar el mensaje de una notificacion de una post eliminado
 
-	Route::get('Notificaciones/Contenido-eliminado/{id}', [
+	Route::post('Notificaciones/Contenido-eliminado/{id}', [
 		'uses' => 'NotificacionesController@show',
 		'as' => 'notifications.show'
 	]);
@@ -177,12 +195,7 @@ Route::group(['middleware' => ['auth','verified']], function(){
 		'as' => 'imagenEliminada.show'
 	]);
 
-	//Ruta para mostrar un comentario eliminado
-
-	Route::get('Notificaciones/Comentario-eliminado/{id}', [
-		'uses' => 'NotificacionesController@comentarioEliminado',
-		'as' => 'comentarioEliminado.show'
-	]);
+	//OJO CON ESTA LINEA QUE ME ESTA CAGANDO LAS VISTAS, ME DICE QUE NO SE ENCUENTRA, TUVE QUE CAMBIAR DE GRUPO DE RUTAS
 
 	// Reportes
 

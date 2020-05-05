@@ -232,6 +232,7 @@ class PostController extends Controller
     public function comentar(Request $request, $id)
     {
 
+
         $comentario = New Commentary($request->all());
         $comentario->user_id = Auth::User()->id;
         $comentario->post_id = $id;

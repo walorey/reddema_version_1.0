@@ -105,12 +105,10 @@ class NotificacionesController extends Controller
     public function read($id)
     {
         DatabaseNotification::find($id)->markAsRead();
+        $notificacion = DatabaseNotification::find($id);
 
-        // if (request()->ajax()) {
-        //     return auth()->user()->unreadNotifications;
-        // }
 
-        return back()->with('flash', 'Notificacion marcada como leida');
+        return redirect($notificacion->data['link']);
     }
 
     public function destroy($id)
@@ -152,12 +150,22 @@ class NotificacionesController extends Controller
     //mostrando un comentario que se elimino
     public function comentarioEliminado($id)
     {
+
         $notificacion = DatabaseNotification::find($id);
+
         if ($notificacion->data['user']['id'] == Auth::user()->id) {
             return view('notifications.comentarioDeleted')->with('notificacion', $notificacion);
         }
         else{
             return redirect()->route('home');
         }
+    }
+
+    public function verNuevoComentario($slug, $id)
+    {
+        DatabaseNotification::find($id)->markAsRead();
+
+
+        return redirect()->route('posts.show', $slug);
     }
 }

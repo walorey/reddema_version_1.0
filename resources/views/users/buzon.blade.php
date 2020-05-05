@@ -20,9 +20,9 @@
 		  <a href="{{route('verConversacion', $user->slug)}}" class="list-group-item list-group-item-action">
 		    <div class="d-flex w-100 justify-content-between">
 		      <h5 class="mb-1">{{$user->name.' '.$user->lastname}}</h5>
-		      <small class="text-muted">3 days ago</small>
+		      <small class="text-muted">{{$user->ultimoMensajeConmigo()->created_at->diffForHumans()}}</small>
 		    </div>
-		    <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+		    <p class="mb-1">{{$user->ultimoMensajeConmigo()->body}}</p>
 		    <small class="text-muted">Donec id elit non mi porta.</small>
 		  </a>
 		  @endforeach
