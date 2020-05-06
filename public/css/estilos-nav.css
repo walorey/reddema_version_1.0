@@ -63,6 +63,13 @@
   width: auto;
   max-width: 1098px;
 }
+.filtros-browser{
+  display: block;
+}
+
+.filtros-movil{
+  display: none!important;
+}
 
 /*estilos responsivos*/
 
@@ -76,5 +83,13 @@
   .imagen-carrusel{
   width: 330px;
   height: 330px;
+  }
+
+  .filtros-browser{
+    display: none!important;
+  }
+  .filtros-movil{
+    display: block!important;
+    margin-bottom: 10px;
   }
 }

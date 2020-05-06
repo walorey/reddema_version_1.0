@@ -237,4 +237,21 @@ class AdminController extends Controller
 
         return redirect()->route('ver.comentarios')->with('amarillo', 'Comentario eliminado');
     }
+
+    public function convertirUsuario($id)
+    {
+        $usuario = User::find($id);
+        if ($usuario->type == 'admin') {
+           $usuario->type = 'member';
+           $usuario->save();
+           return redirect()->route('users.index')->with('verde', $usuario->name.' '.$usuario->lastname.' ahora es un miembro.');
+        }
+        else
+        {
+            $usuario->type = 'admin';
+            $usuario->save();
+
+           return redirect()->route('users.index')->with('verde', $usuario->name.' '.$usuario->lastname.' ahora es un administrador.');
+        }
+    }
 }

@@ -176,13 +176,13 @@ class PostController extends Controller
         $busqueda = $request->busqueda;
         $category = $request->category;
         $animal_type = $request->animal_type;
-        $zone = $request->zone;
+        $lugar = $request->zone;
 
-        $posts = Post::orderBy('id', 'DESC')->title($busqueda)->description($busqueda)->category($category)->animaltype($animal_type)->zone($zone)->paginate(1);
+        $posts = Post::orderBy('id', 'DESC')->title($busqueda)->description($busqueda)->category($category)->animaltype($animal_type)->zone($lugar)->paginate(1);
 
         $zones = Zone::all();
 
-        return view('posts.index')->with('posts', $posts)->with('zones', $zones)->with('zone', $zone)->with('category', $category)->with('animal_type', $animal_type)->with('busqueda', $busqueda);
+        return view('posts.index')->with('posts', $posts)->with('zones', $zones)->with('lugar', $lugar)->with('category', $category)->with('animal_type', $animal_type)->with('busqueda', $busqueda);
 
     }
 
@@ -265,7 +265,7 @@ class PostController extends Controller
     {
         $post = Post::where('slug', '=', $slug)->firstOrFail();
         $pdf = PDF::loadView('posts.exportar-como-pdf', compact('post'));
-        return $pdf->download($post->title.'.pdf');
+        return $pdf->stream($post->title.'.pdf'); //se puede descargar directamente cambiando stream por download
     }
 
 }

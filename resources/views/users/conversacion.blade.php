@@ -1,7 +1,6 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
-	@include('alertas')
 	<h3>
 
 	</h3>
@@ -32,6 +31,7 @@
 		  		</div>
 	  			@endif
 	  		@endforeach
+	  		@include('alertas')
 	  	</div>
 	  </div>
 	</div>

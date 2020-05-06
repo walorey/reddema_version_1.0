@@ -62,6 +62,9 @@
 		                      <i class="fas fa-trash"></i>
 		                    </a>
                         @include('admin.includes.eliminarUsuario')
+                        <a href="{{route('convertir.user', $usuario->id)}}" class="btn btn-circle btn-secondary" title="Hacer/delegar administración">
+                          <i class="fas fa-user-edit"></i>
+                        </a>
                       </td>
                     </tr>
                   	@endforeach

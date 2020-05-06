@@ -1,7 +1,7 @@
 <?php
 
 Route::get('/', function () {
-    return redirect()->route('posts.index');
+    return view('index');
 });
 
 Auth::routes();
@@ -306,5 +306,12 @@ Route::group(['prefix'=>'/Admin', 'middleware'=>['admin' , 'verified']], functio
 	Route::post('/Comentario/Borrar/{id}', [
 		'uses' => 'AdminController@eliminarComentario',
 		'as' => 'eliminar.comentario.admin'
+	]);
+
+	//hacer/delegar administracion
+
+	Route::get('/convertir/{id}', [
+		'uses' => 'AdminController@convertirUsuario',
+		'as' => 'convertir.user'
 	]);
 });
