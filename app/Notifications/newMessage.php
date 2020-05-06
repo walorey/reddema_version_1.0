@@ -44,7 +44,7 @@ class newMessage extends Notification
     {
         return (new MailMessage)
                     ->subject('Nuevo mensaje')
-                    ->line('Tienes un nuevo mensaje de:' .$this->remitente->name.' '.$this->remitente->lastname)
+                    ->line('Tienes un nuevo mensaje de: '.$this->remitente->name.' '.$this->remitente->lastname)
                     ->action('Ver', route('verConversacion', $this->remitente->slug))
                     ->line('Gracias por utilizar Reddema!');
     }

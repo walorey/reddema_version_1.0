@@ -4,6 +4,10 @@
 	<div class="row">
 		<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12"></div>
 		<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+
+			@guest
+			@include('posts.includes.publicacionInvitado')
+			@else
 			@include('alertas')
 			<div class="card">
 			  <div class="card-header">
@@ -34,7 +38,7 @@
                   </div>
                  </span>
 				@endif
-			  <span class="float-right">{{$post->user->name}} {{$post->user->lastname}}</span>
+			  <span class="float-right"><a href="{{route('mostrar.perfil', $post->user->slug)}}">{{$post->user->name}} {{$post->user->lastname}}</a></span>
 			  </div>
 			  <div class="card-body">
 			    <p class="card-text">{{$post->description}}</p>
@@ -97,7 +101,7 @@
 					<div class="media" style="background-color: #FFFFFF">
 					  <img src="{{asset($comentario->user->avatar)}}" class="align-self-start mr-3" alt="..." style="width: 64px; height: 64px;">
 					  <div class="media-body">
-					    <h5 class="mt-2">{{$comentario->user->name}} {{$comentario->user->lastname}}</h5>
+					    <h5 class="mt-2"><a href="{{route('mostrar.perfil', $comentario->user->slug)}}" class="link-limpio">{{$comentario->user->name}} {{$comentario->user->lastname}}</a></h5>
 					    <p>{{$comentario->body}}</p>
 						<p class="card-text"><small class="text-muted">{{$comentario->created_at}}</small></p>
 					  </div>
@@ -129,7 +133,7 @@
 			  	</form>
 			  </div>
 			</div>
-
+			@endguest
 		</div>
 		<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12"></div>
 	</div>

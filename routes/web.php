@@ -8,6 +8,9 @@ Auth::routes();
 
 Auth::routes(['verify' => true]);
 
+Route::resource('posts', 'PostController');
+
+
 
 
 //aca solo va a ir la configuracion por que la necesitas si tenes que cambiar un email y no esta verificado
@@ -129,7 +132,7 @@ Route::group(['middleware' => ['auth','verified']], function(){
 
 	Route::resource('front', 'FrontController');
 
-	Route::resource('posts', 'PostController');
+
 
 	Route::resource('users', 'UserController');
 

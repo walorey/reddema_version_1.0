@@ -2,7 +2,7 @@
 @section('content')
 <div class="container">
 	<div class="container-fluid">
-		<h1 class="h3 mb-2 text-gray-800">Actividad de {{$usuario->name}} {{$usuario->lastname}}</h1>
+		<h1 class="h3 mb-2 text-gray-800">Actividad de <a href="{{route('mostrar.perfil', $usuario->slug)}}" class="link-limpio" target="_blank">{{$usuario->name}} {{$usuario->lastname}}</a></h1>
 		<div class="row">
 		 <!-- Columna Perfil-Comentarios-->
         	<div class="col-lg-6 mb-4">
@@ -92,7 +92,7 @@
                 </div>
                 <div class="col-lg-6 mb-4">
                   @if($rRecibidos->count()<1)
-                  <h4>No hizo reportes</h4>
+                  <h4>No hay reportes</h4>
                   @else
                   <h4>Recibidos</h4>
                   @foreach($rRecibidos as $reporteR)
