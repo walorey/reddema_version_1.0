@@ -206,9 +206,9 @@ class PostController extends Controller
 
         $posts = Post::orderBy('id', 'DESC')->title($busqueda)->description($busqueda)->category($category)->animaltype($animal_type)->zone($lugar)->paginate(1);
 
-        $zones = Zone::all();
+        $provincias = Provincia::all();
 
-        return view('posts.index')->with('posts', $posts)->with('zones', $zones)->with('lugar', $lugar)->with('category', $category)->with('animal_type', $animal_type)->with('busqueda', $busqueda);
+        return view('posts.index')->with('posts', $posts)->with('provincias', $provincias)->with('lugar', $lugar)->with('category', $category)->with('animal_type', $animal_type)->with('busqueda', $busqueda);
 
     }
 

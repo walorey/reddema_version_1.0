@@ -59,9 +59,24 @@
 			</select>
 
 			<br>
+			<label>Provincia</label>
+			<select class="form-control" id="provinciaFiltro" name="provincia_id">
+			  	<option value="">Seleccione una provincia</option>
+			  	@foreach($provincias as $provincia)
+			  	<option value="{{$provincia->id}}">
+			  		{{$provincia->name}}
+			  	</option>
+			  	@endforeach
+			</select>
+
+			<br>
+			<label>Partido/Departamento/Comuna</label>
+			<select class="form-control" id="departamentoFiltro" name="departamento"></select>
+
+			<br>
 
 			<label for="exampleFormControlSelect1">Zona</label>
-			<select class="form-control" name="zone" id="exampleFormControlSelect1">
+			<select class="form-control" name="zone" id="zonaFiltro">
 
 {{-- 			@if(isset($lugar))
 				@foreach($zones as $zone)
