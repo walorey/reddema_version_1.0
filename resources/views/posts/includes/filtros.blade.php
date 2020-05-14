@@ -63,7 +63,7 @@
 			<label for="exampleFormControlSelect1">Zona</label>
 			<select class="form-control" name="zone" id="exampleFormControlSelect1">
 
-			@if(isset($lugar))
+{{-- 			@if(isset($lugar))
 				@foreach($zones as $zone)
 					@if($zone->id == $lugar)
 					<option value="{{$zone->id}}">{{$zone->name}}</option>
@@ -100,7 +100,7 @@
 					@endif
 				@endforeach
 				</optgroup>
-				@endif
+			@endif --}}
 			</select>
 
 			<br>
@@ -186,7 +186,7 @@
 
 						<label for="exampleFormControlSelect1">Zona</label>
 					    <select class="form-control" name="zone" id="exampleFormControlSelect1">
-
+{{--
 					    @if(isset($lugar))
 					    	@foreach($zones as $zone)
 					    		@if($zone->id == $lugar)
@@ -224,7 +224,7 @@
 						    		@endif
 						    	@endforeach
 					    	</optgroup>
-					    @endif
+					    @endif --}}
 					    </select>
 
 				<br>

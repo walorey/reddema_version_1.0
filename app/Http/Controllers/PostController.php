@@ -9,6 +9,8 @@ use App\Image;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use App\User;
+use App\Provincia;
+use App\Departamento;
 use App\Http\Requests\PostRequest;
 use Validator;
 use App\Commentary;
@@ -28,9 +30,33 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::orderBy('id', 'DESC')->paginate(10);
-        $zones = Zone::all();
+        // $departamentos = Departamento::all();
+        // $zones = Zone::all();
+        $provincias = Provincia::all();
 
-        return view('posts.index')->with('posts', $posts)->with('zones', $zones);
+        return view('posts.index')->with('posts', $posts)->with('provincias', $provincias);
+    }
+
+    public function getDepartamentos(Request $request)
+    {
+        if ($request->ajax()) {
+            $departamentos = Departamento::where('provincia_id', $request->provincia_id)->get();
+            foreach ($departamentos as $departamento) {
+                $departamentoArray[$departamento->id] = $departamento->name;
+            }
+            return response()->json($departamentoArray);
+        }
+    }
+
+    public function getZonas(Request $request)
+    {
+        if ($request->ajax()) {
+            $zonas = Zone::where('departamento_id', $request->departamento_id)->get();
+            foreach ($zonas as $zona) {
+                $zonaArray[$zona->id] = $zona->name;
+            }
+            return response()->json($zonaArray);
+        }
     }
 
     /**

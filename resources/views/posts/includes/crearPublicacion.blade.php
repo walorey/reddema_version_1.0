@@ -40,9 +40,24 @@
 			    </select>
 			  </div>
 			  <div class="form-group">
-			    <label for="exampleFormControlSelect1">Zona</label>
-			    <select class="form-control" name="zone" id="exampleFormControlSelect1">
-			    	<option disabled selected>Seleccione una zona</option>
+			  	<label>Provincia</label>
+			  	<select class="form-control" id="provincia" name="provincia_id">
+			  		<option value="">Seleccione una provincia</option>
+			  		@foreach($provincias as $provincia)
+			  			<option value="{{$provincia->id}}">
+			  				{{$provincia->name}}
+			  			</option>
+			  		@endforeach
+			  	</select>
+			  </div>
+			  <div class="form-group">
+			  	<label>Partido/Departamento/Comuna</label>
+			  	<select class="form-control" id="departamento" name="departamento"></select>
+			  </div>
+			  <div class="form-group">
+			    <label>Zona</label>
+			    <select class="form-control" name="zone" id="zona">
+{{-- 			    	<option disabled selected>Seleccione una zona</option>
 			    	<optgroup label="CABA">
 				    	@foreach($zones as $zone)
 				    		@if($zone->id>0 && $zone->id<49)
@@ -56,7 +71,7 @@
 								<option  value="{{$zone->id}}">{{$zone->name}}</option>
 				    		@endif
 				    	@endforeach
-			    	</optgroup>
+			    	</optgroup> --}}
 			    </select>
 			  </div>
 			  <div class="form-group">

@@ -24,6 +24,8 @@
     {{--  icono --}}
 
     <link rel="icon" href="{{asset('img/favicon.ico')}}" type="image/x-icon">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
     <div id="app">
@@ -121,5 +123,6 @@
         </main>
     </div>
 
+    @yield('script')
 </body>
 </html>

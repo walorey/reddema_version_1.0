@@ -11,8 +11,6 @@ Auth::routes(['verify' => true]);
 Route::resource('posts', 'PostController');
 
 
-
-
 //aca solo va a ir la configuracion por que la necesitas si tenes que cambiar un email y no esta verificado
 
 Route::group(['middleware' => ['auth']], function(){
@@ -39,6 +37,12 @@ Route::group(['middleware' => ['auth']], function(){
 		'as' => 'eliminar.cuenta'
 	]);
 
+	//obtener departamentos
+	Route::get('/departamentos', 'PostController@getDepartamentos');
+
+	//obtener zonas
+
+	Route::get('/zonas', 'PostController@getZonas');
 });
 
 //tuve que meter la ruta 'editar-perfil' en otro group por que decia que no encontraba la ruta, no se por que

@@ -26,7 +26,7 @@
 
 
 		<h5 class="font-weight-lighter"> Puedes seguir la publicación en reddema.com.ar</h5>
-		<img src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(100)->generate(route('posts.show', $post->slug))) !!} ">
+		<img src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(150)->generate(route('posts.show', $post->slug))) !!} ">
 	</div>
 </body>
 </html>

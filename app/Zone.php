@@ -12,4 +12,9 @@ class Zone extends Model
     {
     	return $this->hasMany('App\Post');
     }
+
+    public function departamento()
+    {
+    	return $this->belongsTo('App\Departamento');
+    }
 }

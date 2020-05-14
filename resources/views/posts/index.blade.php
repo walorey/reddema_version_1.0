@@ -35,3 +35,38 @@
 
 
 @endsection
+
+@section('script')
+	<script>
+		$(document).ready(function(){
+			$('#provincia').on('change', function(){
+				var provincia_id = $(this).val();
+				if ($.trim(provincia_id) != '') {
+					$.get('departamentos', {provincia_id: provincia_id}, function (departamentos){
+						$('#departamento').empty();
+						$('#departamento').append("<option value=''>Seleccione un Partido, Departamento o comuna</option>");
+						$.each(departamentos, function(index, value){
+							$('#departamento').append("<option value='"+ index +"'>"+ value +"</option>");
+						});
+					});
+				}
+			});
+		});
+	</script>
+	<script>
+		$(document).ready(function(){
+			$('#departamento').on('change', function(){
+				var departamento_id = $(this).val();
+				if ($.trim(departamento_id) != '') {
+					$.get('zonas', {departamento_id: departamento_id}, function (zonas){
+						$('#zona').empty();
+						$('#zona').append("<option value=''>Seleccione una localidad</option>");
+						$.each(zonas, function(index, value){
+							$('#zona').append("<option value='"+ index +"'>"+ value +"</option>");
+						});
+					});
+				}
+			});
+		});
+	</script>
+@endsection
