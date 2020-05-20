@@ -60,6 +60,17 @@
 
 			<br>
 			<label>Provincia</label>
+			@if(isset($lugar))
+			<select class="form-control" id="provinciaFiltro" name="provincia_id">
+				<option value="$lugar->departamento->provincia->id">{{$lugar->departamento->provincia->name}}</option>
+			  	<option value="">Seleccione una provincia</option>
+			  	@foreach($provincias as $provincia)
+			  	<option value="{{$provincia->id}}">
+			  		{{$provincia->name}}
+			  	</option>
+			  	@endforeach
+			</select>
+			@else
 			<select class="form-control" id="provinciaFiltro" name="provincia_id">
 			  	<option value="">Seleccione una provincia</option>
 			  	@foreach($provincias as $provincia)
@@ -68,54 +79,29 @@
 			  	</option>
 			  	@endforeach
 			</select>
-
+			@endif
 			<br>
 			<label>Partido/Departamento/Comuna</label>
-			<select class="form-control" id="departamentoFiltro" name="departamento"></select>
+			<select class="form-control" id="departamentoFiltro" name="departamento">
+			@if(isset($lugar))
+
+				<option value="{{$lugar->departamento->id}}">{{$lugar->departamento->name}}</option>
+			@else
+				<option value="">Seleccione Partido/Departamento/Comuna</option>
+			@endif
+			</select>
+
 
 			<br>
 
 			<label for="exampleFormControlSelect1">Zona</label>
 			<select class="form-control" name="zone" id="zonaFiltro">
 
-{{-- 			@if(isset($lugar))
-				@foreach($zones as $zone)
-					@if($zone->id == $lugar)
-					<option value="{{$zone->id}}">{{$zone->name}}</option>
-					@endif
-				@endforeach
-				<option value="">Seleccione una zona</option>
-				<optgroup label="CABA">
-				@foreach($zones as $zone)
-					@if($zone->id>0 && $zone->id<49)
-						<option value="{{$zone->id}}">{{$zone->name}}</option>
-					@endif
-				@endforeach
-				</optgroup>
-				<optgroup label="Buenos Aires Provincia">
-				@foreach($zones as $zone)
-					@if($zone->id>50)
-					<option  value="{{$zone->id}}">{{$zone->name}}</option>
-					@endif
-				@endforeach
-				</optgroup>
+			@if(isset($lugar))
+				<option value="{{$lugar->id}}">{{$lugar->name}}</option>
 			@else
-				<option disabled selected>Seleccione una zona</option>
-				<optgroup label="CABA">
-				@foreach($zones as $zone)
-					@if($zone->id>0 && $zone->id<49)
-					<option value="{{$zone->id}}">{{$zone->name}}</option>
-					@endif
-				@endforeach
-				</optgroup>
-				<optgroup label="Buenos Aires Provincia">
-				@foreach($zones as $zone)
-					@if($zone->id>50)
-						<option  value="{{$zone->id}}">{{$zone->name}}</option>
-					@endif
-				@endforeach
-				</optgroup>
-			@endif --}}
+			<option value="">Seleccione una localidad</option>
+			@endif
 			</select>
 
 			<br>
@@ -199,50 +185,49 @@
 
 				  		<br>
 
-						<label for="exampleFormControlSelect1">Zona</label>
-					    <select class="form-control" name="zone" id="exampleFormControlSelect1">
-{{--
-					    @if(isset($lugar))
-					    	@foreach($zones as $zone)
-					    		@if($zone->id == $lugar)
-					    		<option value="{{$zone->id}}">{{$zone->name}}</option>
-					    		@endif
-					    	@endforeach
-					    	<option value="">Seleccione una zona</option>
-					    	<optgroup label="CABA">
-						    	@foreach($zones as $zone)
-						    		@if($zone->id>0 && $zone->id<49)
-						    		<option value="{{$zone->id}}">{{$zone->name}}</option>
-						    		@endif
-						    	@endforeach
-					    	</optgroup>
-					    	<optgroup label="Buenos Aires Provincia">
-						    	@foreach($zones as $zone)
-						    		@if($zone->id>50)
-										<option  value="{{$zone->id}}">{{$zone->name}}</option>
-						    		@endif
-						    	@endforeach
-					    	</optgroup>
-					    @else
-					    	<option disabled selected>Seleccione una zona</option>
-					    	<optgroup label="CABA">
-						    	@foreach($zones as $zone)
-						    		@if($zone->id>0 && $zone->id<49)
-						    		<option value="{{$zone->id}}">{{$zone->name}}</option>
-						    		@endif
-						    	@endforeach
-					    	</optgroup>
-					    	<optgroup label="Buenos Aires Provincia">
-						    	@foreach($zones as $zone)
-						    		@if($zone->id>50)
-										<option  value="{{$zone->id}}">{{$zone->name}}</option>
-						    		@endif
-						    	@endforeach
-					    	</optgroup>
-					    @endif --}}
-					    </select>
+						<label>Provincia</label>
+						@if(isset($lugar))
+						<select class="form-control" id="provinciaFiltro" name="provincia_id">
+							<option value="$lugar->departamento->provincia->id">{{$lugar->departamento->provincia->name}}</option>
+						  	<option value="">Seleccione una provincia</option>
+						  	@foreach($provincias as $provincia)
+						  	<option value="{{$provincia->id}}">
+						  		{{$provincia->name}}
+						  	</option>
+						  	@endforeach
+						</select>
+						@else
+						<select class="form-control" id="provinciaMovil" name="provincia_id">
+						  	<option value="">Seleccione una provincia</option>
+						  	@foreach($provincias as $provincia)
+						  	<option value="{{$provincia->id}}">
+						  		{{$provincia->name}}
+						  	</option>
+						  	@endforeach
+						</select>
+						@endif
+						<br>
+						<label>Partido/Departamento/Comuna</label>
+						<select class="form-control" id="departamentoMovil" name="departamento">
+						@if(isset($lugar))
 
-				<br>
+							<option value="{{$lugar->departamento->id}}">{{$lugar->departamento->name}}</option>
+						@endif
+						</select>
+
+
+						<br>
+
+						<label for="exampleFormControlSelect1">Zona</label>
+						<select class="form-control" name="zone" id="zonaMovil">
+
+						@if(isset($lugar))
+							<option value="{{$lugar->id}}">{{$lugar->name}}</option>
+						@else
+						<option value="">Seleccione una localidad</option>
+						@endif
+						</select>
+						<br>
 
 			<button type="submit" class="btn btn-info">Ir</button>
 		</form>

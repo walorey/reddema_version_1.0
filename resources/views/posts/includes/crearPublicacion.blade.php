@@ -18,18 +18,37 @@
 			  	<input class="form-control" name="title" type="text" placeholder="Perro negro perdido, Encontre un gato..." value="{{old('title')}}">
 			  </div>
 			  <div class="form-group">
-			    <label for="exampleFormControlSelect1">Categoria</label>
-			    <select class="form-control" id="exampleFormControlSelect1" name="category">
+			    <label for="selectCategoria">Categoria</label>
+			    <select class="form-control" id="selectCategoria" name="category">
+			      @if(old('category'))
+			      <option value="{{old('category')}}"selected>{{old('category')}}</option>
+			      <option disabled>_________</option>
+			      <option value="Adopción">Adopción</option>
+			      <option value="Encuentro">Encuentro</option>
+			      <option value="Estado crítico">Estado crítico</option>
+			      <option value="Pérdida">Pérdida</option>
+			      @else
 			      <option disabled selected>Seleccione una categoría</option>
 			      <option value="Adopción">Adopción</option>
 			      <option value="Encuentro">Encuentro</option>
 			      <option value="Estado crítico">Estado crítico</option>
 			      <option value="Pérdida">Pérdida</option>
+			      @endif
 			    </select>
 			  </div>
 			   <div class="form-group">
-			    <label for="exampleFormControlSelect1">Tipo de animal</label>
-			    <select class="form-control" name="animal_type" id="exampleFormControlSelect1">
+			    <label for="selectTipoAnimal">Tipo de animal</label>
+			    <select class="form-control" name="animal_type" id="selectTipoAnimal">
+			      @if(old('animal_type'))
+			      <option value="{{old('animal_type')}}" selected>{{old('animal_type')}}</option>
+			      <option disabled>_________</option>
+			      <option value="Canino">Canino</option>
+			      <option value="Felino">Felino</option>
+			      <option value="Ave">Ave</option>
+			      <option value="Roedor">Roedor</option>
+			      <option value="Equino">Equino</option>
+			      <option value="Otro">Otro</option>
+			      @else
 			      <option disabled selected>Seleccione el tipo de animal</option>
 			      <option value="Canino">Canino</option>
 			      <option value="Felino">Felino</option>
@@ -37,6 +56,7 @@
 			      <option value="Roedor">Roedor</option>
 			      <option value="Equino">Equino</option>
 			      <option value="Otro">Otro</option>
+				  @endif
 			    </select>
 			  </div>
 			  <div class="form-group">
@@ -44,7 +64,7 @@
 			  	<select class="form-control" id="provincia" name="provincia_id">
 			  		<option value="">Seleccione una provincia</option>
 			  		@foreach($provincias as $provincia)
-			  			<option value="{{$provincia->id}}">
+			  			<option value="{{$provincia->id}}" {{ old('provincia_id') == $provincia->id ? "selected" : "" }}>
 			  				{{$provincia->name}}
 			  			</option>
 			  		@endforeach
@@ -52,7 +72,7 @@
 			  </div>
 			  <div class="form-group">
 			  	<label>Partido/Departamento/Comuna</label>
-			  	<select class="form-control" id="departamento" name="departamento"></select>
+			  	<select id="departamento" data-old="{{old('departamento')}}" name="departamento" class="form-control"></select>
 			  </div>
 			  <div class="form-group">
 			    <label>Zona</label>

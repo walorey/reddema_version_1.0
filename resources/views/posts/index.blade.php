@@ -37,20 +37,26 @@
 @endsection
 
 @section('script')
+	{{-- los siguientes dos scripts son para los select de creacion de publicacion --}}
 	<script>
 		$(document).ready(function(){
-			$('#provincia').on('change', function(){
-				var provincia_id = $(this).val();
+			function loadDepartamento(){
+				var provincia_id = $('#provincia').val();
 				if ($.trim(provincia_id) != '') {
 					$.get('departamentos', {provincia_id: provincia_id}, function (departamentos){
+
+						var old = $('#departamento').data('old') != '' ? $('#departamento').data('old') : '';
+
 						$('#departamento').empty();
 						$('#departamento').append("<option value=''>Seleccione un Partido, Departamento o comuna</option>");
 						$.each(departamentos, function(index, value){
-							$('#departamento').append("<option value='"+ index +"'>"+ value +"</option>");
+							$('#departamento').append("<option value='"+ index +"'" + (old == index ? 'selected' : '') + ">"+ value +"</option>");
 						});
 					});
 				}
-			});
+			}
+			loadDepartamento();
+			$('#provincia').on('change', loadDepartamento);
 		});
 	</script>
 	<script>
@@ -97,6 +103,39 @@
 						$('#zonaFiltro').append("<option value=''>Seleccione una localidad</option>");
 						$.each(zonas, function(index, value){
 							$('#zonaFiltro').append("<option value='"+ index +"'>"+ value +"</option>");
+						});
+					});
+				}
+			});
+		});
+	</script>
+	{{-- filtro movil --}}
+	<script>
+		$(document).ready(function(){
+			$('#provinciaMovil').on('change', function(){
+				var provincia_id = $(this).val();
+				if ($.trim(provincia_id) != '') {
+					$.get('departamentos', {provincia_id: provincia_id}, function (departamentos){
+						$('#departamentoMovil').empty();
+						$('#departamentoMovil').append("<option value=''>Seleccione un Partido, Departamento o comuna</option>");
+						$.each(departamentos, function(index, value){
+							$('#departamentoMovil').append("<option value='"+ index +"'>"+ value +"</option>");
+						});
+					});
+				}
+			});
+		});
+	</script>
+	<script>
+		$(document).ready(function(){
+			$('#departamentoMovil').on('change', function(){
+				var departamento_id = $(this).val();
+				if ($.trim(departamento_id) != '') {
+					$.get('zonas', {departamento_id: departamento_id}, function (zonas){
+						$('#zonaMovil').empty();
+						$('#zonaMovil').append("<option value=''>Seleccione una localidad</option>");
+						$.each(zonas, function(index, value){
+							$('#zonaMovil').append("<option value='"+ index +"'>"+ value +"</option>");
 						});
 					});
 				}

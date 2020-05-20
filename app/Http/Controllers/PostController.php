@@ -202,13 +202,22 @@ class PostController extends Controller
         $busqueda = $request->busqueda;
         $category = $request->category;
         $animal_type = $request->animal_type;
-        $lugar = $request->zone;
-
-        $posts = Post::orderBy('id', 'DESC')->title($busqueda)->description($busqueda)->category($category)->animaltype($animal_type)->zone($lugar)->paginate(1);
-
         $provincias = Provincia::all();
 
-        return view('posts.index')->with('posts', $posts)->with('provincias', $provincias)->with('lugar', $lugar)->with('category', $category)->with('animal_type', $animal_type)->with('busqueda', $busqueda);
+        //por si filtras sin ingresar una zona
+        if ($request->zone != '') {
+            $lugar = Zone::find($request->zone);
+
+            $posts = Post::orderBy('id', 'DESC')->title($busqueda)->description($busqueda)->category($category)->animaltype($animal_type)->zone($lugar->id)->paginate(20);
+            return view('posts.index')->with('posts', $posts)->with('provincias', $provincias)->with('lugar', $lugar)->with('category', $category)->with('animal_type', $animal_type)->with('busqueda', $busqueda);
+        }
+        else{
+            $posts = Post::orderBy('id', 'DESC')->title($busqueda)->description($busqueda)->category($category)->animaltype($animal_type)->paginate(20);
+            return view('posts.index')->with('posts', $posts)->with('provincias', $provincias)->with('category', $category)->with('animal_type', $animal_type)->with('busqueda', $busqueda);
+        }
+
+
+
 
     }
 
@@ -227,9 +236,9 @@ class PostController extends Controller
         $zone = $id;
 
         $posts = Post::orderBy('id', 'DESC')->zone($zone)->paginate(10);
-        $zones = Zone::all();
+        $provincias = Provincia::all();
 
-        return view('posts.index')->with('posts', $posts)->with('zones', $zones)->with('zone', $zone);
+        return view('posts.index')->with('posts', $posts)->with('provincias', $provincias)->with('zone', $zone);
 
     }
 
@@ -238,9 +247,9 @@ class PostController extends Controller
         $category = $name;
 
         $posts = Post::orderBy('id', 'DESC')->category($category)->paginate(10);
-        $zones = Zone::all();
+        $provincias = Provincia::all();
 
-        return view('posts.index')->with('posts', $posts)->with('zones', $zones)->with('category', $category);
+        return view('posts.index')->with('posts', $posts)->with('provincias', $provincias)->with('category', $category);
 
     }
 
@@ -249,9 +258,9 @@ class PostController extends Controller
         $animal_type = $type;
 
         $posts = Post::orderBy('id', 'DESC')->animaltype($animal_type)->paginate(10);
-        $zones = Zone::all();
+        $provincias = Provincia::all();
 
-        return view('posts.index')->with('posts', $posts)->with('zones', $zones)->with('animal_type', $animal_type);
+        return view('posts.index')->with('posts', $posts)->with('provincias', $provincias)->with('animal_type', $animal_type);
 
     }
 
